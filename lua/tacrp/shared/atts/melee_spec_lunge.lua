@@ -48,7 +48,7 @@ ATT.Hook_PreReload = function(wep)
     local ang = Angle(0, ply:GetAngles().y, 0)
     local vel
 
-    if ply:IsOnGround() and ply:Crouching() then
+    if ply:IsOnGround() and ply:IsFlagSet(4) then
         local ang2 = ply:GetAngles()
         ang2.p = math.min(-70, ang2.p)
         vel = ang2:Forward() * 800
