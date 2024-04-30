@@ -5,12 +5,14 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "SIG SG 551"
+SWEP.AbbrevName = "SG 551"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "1Elite"
 SWEP.SubCatType = "4Assault Rifle"
 
 SWEP.Description = "Assault rifle with all around excellent performance, offset by a lower magazine capacity."
+SWEP.Description_Quote = "\"No questions, no answers. That's the business we're in.\""
 
 SWEP.Trivia_Caliber = "5.56x45mm"
 SWEP.Trivia_Manufacturer = "SIG Sauer AG"
@@ -41,12 +43,6 @@ SWEP.BalanceStats = {
         },
 
         ClipSize = 20,
-
-        MoveSpeedMult = 0.85,
-        ShootingSpeedMult = 0.75,
-        SightedSpeedMult = 0.75,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 16,
@@ -69,24 +65,10 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.3,
-
-        MoveSpeedMult = 0.9,
-        ShootingSpeedMult = 0.8,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.55,
-        ReloadSpeedMult = 0.65,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 12,
         Damage_Min = 9,
-
-        MoveSpeedMult = 0.85,
-        ShootingSpeedMult = 0.75,
-        SightedSpeedMult = 0.75,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilMaximum = 20,
@@ -123,6 +105,8 @@ SWEP.MuzzleVelocity = 22000
 SWEP.Firemodes = {2, -3, 1}
 
 SWEP.RPM = 850
+
+SWEP.PostBurstDelay = 0.1
 
 SWEP.Spread = 0.001
 

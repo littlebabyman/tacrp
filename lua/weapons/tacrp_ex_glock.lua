@@ -8,9 +8,10 @@ SWEP.PrintName = "Glock 17"
 SWEP.Category = "Tactical RP" // "Tactical RP (Extras)"
 
 SWEP.SubCatTier = "4Consumer"
-SWEP.SubCatType = "1Sidearm"
+SWEP.SubCatType = "1Pistol"
 
 SWEP.Description = "Polymer pistol with larger-than-standard capacity and a fast fire rate."
+SWEP.Description_Quote = "Does not show up on airport metal detectors."
 
 SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Glock Ges.m.b.H"
@@ -29,12 +30,6 @@ SWEP.BalanceStats = {
         Damage_Max = 24,
         Damage_Min = 12,
         RecoilKick = 3,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 13,
@@ -42,6 +37,7 @@ SWEP.BalanceStats = {
         Range_Min = 500,
         Range_Max = 1750,
         RPM = 600,
+        RPMMultSemi = 1,
 
         RecoilMaximum = 10,
         RecoilDissipationRate = 10,
@@ -59,12 +55,6 @@ SWEP.BalanceStats = {
         },
 
         ReloadTimeMult = 1.25 * 1.25,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.9,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 7,
@@ -72,12 +62,6 @@ SWEP.BalanceStats = {
 
         HipFireSpreadPenalty = 0.012,
         RecoilSpreadPenalty = 0.002,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         Description = "Lightweight polymer handgun with a high fire rate but below-average spread.",
@@ -91,11 +75,11 @@ SWEP.TTTReplace = TacRP.TTTReplacePreset.Pistol
 
 SWEP.Damage_Max = 18
 SWEP.Damage_Min = 10
-SWEP.Range_Min = 400 // distance for which to maintain maximum damage
+SWEP.Range_Min = 500 // distance for which to maintain maximum damage
 SWEP.Range_Max = 1800 // distance at which we drop to minimum damage
 SWEP.Penetration = 3 // units of metal this weapon can penetrate
 SWEP.ArmorPenetration = 0.45
-SWEP.ArmorBonus = 1.1
+SWEP.ArmorBonus = 0.5
 
 SWEP.MuzzleVelocity = 11000
 
@@ -114,7 +98,8 @@ SWEP.BodyDamageMultipliers = {
 
 SWEP.Firemode = 1
 
-SWEP.RPM = 600
+SWEP.RPM = 550
+SWEP.RPMMultSemi = 0.65
 
 SWEP.Spread = 0.008
 

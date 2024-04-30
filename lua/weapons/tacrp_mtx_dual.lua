@@ -8,7 +8,7 @@ SWEP.PrintName = "Dual MTX"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "1Elite"
-SWEP.SubCatType = "1Sidearm"
+SWEP.SubCatType = "3Akimbo"
 
 SWEP.Description = "An indulgent pair of high capacity, high damage, high quality compact pistols.\nWith firepower like this, who needs aiming?"
 
@@ -26,28 +26,10 @@ SWEP.Slot = 1
 
 SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 24,
-        Damage_Min = 12,
-        RPM = 700,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 3,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1,
-            [HITGROUP_LEFTARM] = 0.9,
-            [HITGROUP_RIGHTARM] = 0.9,
-            [HITGROUP_LEFTLEG] = 0.75,
-            [HITGROUP_RIGHTLEG] = 0.75,
-            [HITGROUP_GEAR] = 0.9
-        },
-
+        Damage_Max = 30,
+        Damage_Min = 8,
+        RPM = 420,
         Spread = 0.02,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 14,
@@ -68,14 +50,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.9,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 18,
@@ -83,12 +57,6 @@ SWEP.BalanceStats = {
         RPM = 750,
 
         Spread = 0.01,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilSpreadPenalty = 0.003,
@@ -100,18 +68,18 @@ SWEP.TTTReplace = {["weapon_zm_pistol"] = 0.5, ["weapon_ttt_glock"] = 0.5}
 
 // "ballistics"
 
-SWEP.Damage_Max = 30
-SWEP.Damage_Min = 12
+SWEP.Damage_Max = 32
+SWEP.Damage_Min = 10
 SWEP.Range_Min = 500 // distance for which to maintain maximum damage
-SWEP.Range_Max = 2200 // distance at which we drop to minimum damage
+SWEP.Range_Max = 1800 // distance at which we drop to minimum damage
 SWEP.Penetration = 3 // units of metal this weapon can penetrate
-SWEP.ArmorPenetration = 0.65
-SWEP.ArmorBonus = 1.5
+SWEP.ArmorPenetration = 0.55
+SWEP.ArmorBonus = 0.5
 
 SWEP.MuzzleVelocity = 11500
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 4.5,
+    [HITGROUP_HEAD] = 4,
     [HITGROUP_CHEST] = 1,
     [HITGROUP_STOMACH] = 1,
     [HITGROUP_LEFTARM] = 0.9,
@@ -123,12 +91,14 @@ SWEP.BodyDamageMultipliers = {
 
 // misc. shooting
 
-SWEP.Firemodes = {-2}
-SWEP.Firemode = -2
-SWEP.RunawayBurst = true
-SWEP.PostBurstDelay = 0.07
+SWEP.Firemodes = {-2, 2}
+SWEP.Firemode = false
+SWEP.RunawayBurst = false
+SWEP.PostBurstDelay = 0.06
 
-SWEP.RPM = 650
+SWEP.RPM = 500
+SWEP.RPMMultBurst = 1.1
+SWEP.RPMMultSemi = 1.1
 
 SWEP.Spread = 0.015
 
@@ -144,7 +114,7 @@ SWEP.RecoilFirstShotMult = 1 // multiplier for the first shot's recoil amount
 
 SWEP.RecoilVisualKick = 1
 SWEP.RecoilKick = 5
-SWEP.RecoilStability = 0.1
+SWEP.RecoilStability = 0.15
 
 SWEP.RecoilSpreadPenalty = 0.002
 
@@ -198,7 +168,7 @@ SWEP.HolsterAng = Angle(60, 5, 0)
 
 // reload
 
-SWEP.ClipSize = 30
+SWEP.ClipSize = 24
 SWEP.Ammo = "pistol"
 
 SWEP.ReloadTimeMult = 1

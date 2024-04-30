@@ -24,7 +24,14 @@ ATT.Num = 3
 
 ATT.InstalledElements = {"3gl"}
 
-ATT.Add_Spread = 0.02
+ATT.Override_Damage_Max = 60
+ATT.Override_Damage_Min = 60
+
+ATT.Override_Spread = 0.05
+ATT.Override_ShotgunPelletSpread = 0.025
+ATT.Override_MidAirSpreadPenalty = 0
+ATT.Override_HipFireSpreadPenalty = 0
+
 ATT.Mult_ShootEntForce = 0.85
 
 if engine.ActiveGamemode() == "terrortown" then
@@ -50,24 +57,25 @@ ATT.Category = "ammo_40mm"
 
 ATT.SortOrder = 2
 
-ATT.ShootEnt = false
+ATT.Override_ShootEnt = false
 
 ATT.NoRanger = false
 
-ATT.Damage_Max = 10
-ATT.Damage_Min = 3
-ATT.Num = 24
-ATT.Range_Min = 100
-ATT.Range_Max = 1500
-ATT.PenetrationOverride = 0
+ATT.Override_Damage_Max = 10
+ATT.Override_Damage_Min = 3
+ATT.Override_Num = 24
+ATT.Override_Range_Min = 100
+ATT.Override_Range_Max = 1500
 
-ATT.Spread = 0.05
-ATT.ShotgunPelletSpread = 0.015
+ATT.Override_Spread = 0.06
+ATT.Override_ShotgunPelletSpread = 0.04
 
-ATT.MuzzleVelocity = 9500
+ATT.Override_HipFireSpreadPenalty = 0
+
+ATT.Override_MuzzleVelocity = 9500
 
 ATT.Override_Sound_ShootAdd = "^TacRP/weapons/m4star10/fire-2.wav"
-ATT.Pitch_Shoot = 95
+ATT.Override_Pitch_Shoot = 95
 
 ATT.DoorBreach = true
 ATT.DoorBreachThreshold = 120
@@ -126,26 +134,29 @@ ATT.Category = "ammo_40mm"
 
 ATT.SortOrder = 2.5
 
-ATT.ShootEnt = false
+ATT.Override_ShootEnt = false
 
 ATT.InstalledElements = {"buck"} --{"heat"}
 
-ATT.NoRanger = false
+ATT.Override_NoRanger = false
 
-ATT.Damage_Max = 34
-ATT.Damage_Min = 5
-ATT.Num = 8
-ATT.Range_Min = 250
-ATT.Range_Max = 2000
-ATT.Penetration = 6
+ATT.Override_Damage_Max = 30
+ATT.Override_Damage_Min = 6
+ATT.Override_Num = 8
+ATT.Override_Range_Min = 400
+ATT.Override_Range_Max = 2000
+ATT.Override_Penetration = 6
 
-ATT.Spread = 0.015
-ATT.ShotgunPelletSpread = 0.01
+ATT.Override_Spread = 0.015
+ATT.Override_ShotgunPelletSpread = 0.01
+
+ATT.Override_HipFireSpreadPenalty = 0.03
+
 
 ATT.MuzzleVelocity = 15000
 
 ATT.Override_Sound_ShootAdd = "^tacrp/weapons/m4star10/fire-2.wav"
-ATT.Pitch_Shoot = 110
+ATT.Override_Pitch_Shoot = 110
 
 if engine.ActiveGamemode() == "terrortown" then
     ATT.Free = true
@@ -217,20 +228,25 @@ ATT.PrintName = "Ratshot"
 ATT.FullName = "40mm Ratshot Grenades"
 ATT.Icon = Material("entities/tacrp_att_ammo_40mm_ratshot.png", "mips smooth")
 ATT.Description = "For rodents of unbelievable size."
-ATT.Pros = {"att.procon.airburst"}
-ATT.Cons = {"att.procon.timedfuse"}
+ATT.Pros = {"att.procon.radius", "att.procon.proxfuse"}
+ATT.Cons = {"stat.damage", "stat.muzzlevelocity"}
 
 ATT.Category = "ammo_40mm"
 
 ATT.SortOrder = 2.9
 
+ATT.Override_Damage_Max = 80
+ATT.Override_Damage_Min = 80
+
 ATT.ShootEnt = "tacrp_proj_40mm_ratshot"
-ATT.Mult_ShootEntForce = 0.25
+ATT.Mult_ShootEntForce = 0.75
 
 ATT.InstalledElements = {"smoke"}
 
 if engine.ActiveGamemode() == "terrortown" then
     ATT.Free = true
+    ATT.Override_Damage_Max = 60
+    ATT.Override_Damage_Min = 60
 end
 
 TacRP.LoadAtt(ATT, "ammo_40mm_ratshot")
@@ -310,22 +326,22 @@ ATT.SortOrder = 5
 
 ATT.Mult_MuzzleVelocity = 0.75
 
-ATT.Num = 20
-ATT.Override_Damage_Max = 5
-ATT.Override_Damage_Min = 2
+ATT.Override_Num = 16
+ATT.Override_Damage_Max = 6
+ATT.Override_Damage_Min = 4
 ATT.Override_Penetration = 1
 
 ATT.Mult_HipFireSpreadPenalty = 0.5
 
-ATT.Add_Spread = 0.012
-ATT.Add_ShotgunPelletSpread = 0.006
+ATT.Add_Spread = 0.01
+ATT.Add_ShotgunPelletSpread = 0.015
 
 ATT.Override_BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 3,
+    [HITGROUP_HEAD] = 2,
     [HITGROUP_CHEST] = 1,
-    [HITGROUP_STOMACH] = 1.25,
-    [HITGROUP_LEFTARM] = 0.9,
-    [HITGROUP_RIGHTARM] = 0.9,
+    [HITGROUP_STOMACH] = 1,
+    [HITGROUP_LEFTARM] = 1,
+    [HITGROUP_RIGHTARM] = 1,
     [HITGROUP_LEFTLEG] = 0.75,
     [HITGROUP_RIGHTLEG] = 0.75,
     [HITGROUP_GEAR] = 0.75
@@ -364,7 +380,7 @@ ATT.Mult_MuzzleVelocity = 0.667
 
 ATT.Mult_Penetration = 0
 
-ATT.Mult_ClipSize = 0.45
+ATT.Mult_ClipSize = 0.51
 
 ATT.Mult_RPM = 0.85
 ATT.Mult_ShootTimeMult = 1 / 0.85
@@ -488,7 +504,7 @@ ATT.SortOrder = 1.5
 -- ATT.Mult_Damage_Min = 0.9
 
 ATT.Add_Penetration = 5
-ATT.Add_ArmorPenetration = 0.25
+ATT.Add_ArmorPenetration = 0.1
 ATT.Add_ArmorBonus = 0.25
 
 ATT.Add_RecoilKick = 1
@@ -539,17 +555,18 @@ ATT.FullName = "Hollowpoint Rounds"
 ATT.Icon = Material("entities/tacrp_att_acc_hollowpoints.png", "mips smooth")
 ATT.Description = "Bullets that expand on hit, improving damage to flesh targets and limbs."
 ATT.Pros = {"att.procon.chest", "att.procon.limb"}
-ATT.Cons = {"att.procon.armor", "stat.penetration"}
+ATT.Cons = {"att.procon.head", "att.procon.armor", "stat.penetration"}
 
 ATT.Category = "ammo_pistol"
 
 ATT.SortOrder = 1
 
-ATT.Mult_Penetration = 0.25
-ATT.Mult_ArmorPenetration = 0.85
+ATT.Mult_Penetration = 0.2
+ATT.Mult_ArmorPenetration = 0.75
 ATT.Mult_ArmorBonus = 0.75
 
 ATT.Override_BodyDamageMultipliersExtra = {
+    [HITGROUP_HEAD] = 0.75,
     [HITGROUP_CHEST] = 1.15,
     [HITGROUP_LEFTARM] = -1,
     [HITGROUP_RIGHTARM] = -1,
@@ -737,7 +754,7 @@ ATT.Override_ShootEnt = "tacrp_proj_rpg7_mortar"
 ATT.Add_ShootingSpeedMult = 0.3
 ATT.Add_ReloadSpeedMult = 0.15
 
-ATT.Override_ShootEntForce = 5000
+ATT.Override_ShootEntForce = 3000
 
 if engine.ActiveGamemode() == "terrortown" then
     ATT.Free = true
@@ -763,7 +780,7 @@ ATT.Category = "ammo_rpg"
 ATT.SortOrder = 2
 
 ATT.Override_ShootEnt = "tacrp_proj_rpg7_ratshot"
-ATT.Override_ShootEntForce = 2000
+ATT.Override_ShootEntForce = 1000
 
 if engine.ActiveGamemode() == "terrortown" then
     ATT.Free = true

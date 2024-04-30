@@ -102,6 +102,8 @@ net.Receive("TacRP_sendbullet", function(len, ply)
         ent = net.ReadEntity()
     end
 
+    if !weapon:IsValid() or !weapon.GetValue then return end
+
     local bullet = {
         Pos = pos,
         StartPos = pos,
@@ -117,8 +119,6 @@ net.Receive("TacRP_sendbullet", function(len, ply)
         Weapon = weapon,
         Filter = {weapon:GetOwner()},
     }
-
-    if !weapon:IsValid() or !weapon.GetValue then return end
 
     if weapon:GetValue("TracerNum") == 0 then
         bullet.Invisible = true
@@ -292,7 +292,7 @@ function TacRP:ProgressPhysBullet(bullet, timestep)
                 bullet.Dead = true
                 if game.SinglePlayer() or !TacRP.ConVars["client_damage"]:GetBool() then
                     bullet.Attacker:FireBullets({
-                        Damage = 1, -- weapon:GetValue("Damage_Max"),
+                        Damage = weapon:GetValue("Damage_Max"),
                         Force = 8,
                         Tracer = 0,
                         Num = 1,

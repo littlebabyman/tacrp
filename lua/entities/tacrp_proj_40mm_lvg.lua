@@ -27,7 +27,7 @@ ENT.SmokeTrail = true
 
 function ENT:Detonate()
     local attacker = self.Attacker or self:GetOwner() or self
-    local mult = self.NPCDamage and 0.5 or 1
+    local mult = TacRP.ConVars["mult_damage_explosive"]:GetFloat() * (self.NPCDamage and 0.5 or 1)
 
     local dmg = DamageInfo()
     dmg:SetAttacker(attacker)
@@ -45,6 +45,7 @@ function ENT:Detonate()
     if self:WaterLevel() > 0 then
         util.Effect("WaterSurfaceExplosion", fx)
     else
+        fx:SetRadius(512)
         util.Effect("TacRP_flashexplosion", fx)
         util.Effect("HelicopterMegaBomb", fx)
     end

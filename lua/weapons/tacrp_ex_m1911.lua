@@ -5,12 +5,14 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "Colt M1911"
+SWEP.AbbrevName = "M1911"
 SWEP.Category = "Tactical RP" // "Tactical RP (Extras)"
 
 SWEP.SubCatTier = "4Consumer"
-SWEP.SubCatType = "1Sidearm"
+SWEP.SubCatType = "1Pistol"
 
 SWEP.Description = "Surplus pistol from an era before tactical attachments and pistol optics, yet still hits quite hard."
+SWEP.Description_Quote = "\"Hasta la vista, baby!\""
 
 SWEP.Trivia_Caliber = ".45 ACP"
 SWEP.Trivia_Manufacturer = "Colt"
@@ -32,23 +34,6 @@ SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
         Damage_Max = 35,
         Damage_Min = 10,
-
-        BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 3.25,
-            [HITGROUP_CHEST] = 1,
-            [HITGROUP_STOMACH] = 1.25,
-            [HITGROUP_LEFTARM] = 1,
-            [HITGROUP_RIGHTARM] = 1,
-            [HITGROUP_LEFTLEG] = 0.75,
-            [HITGROUP_RIGHTLEG] = 0.75,
-            [HITGROUP_GEAR] = 0.9
-        },
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 30,
@@ -56,6 +41,7 @@ SWEP.BalanceStats = {
         Range_Min = 250,
         Range_Max = 1500,
         RPM = 240,
+        RPMMultSemi = 1,
 
         RecoilResetInstant = true,
         RecoilMaximum = 3,
@@ -74,14 +60,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.9,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 14,
@@ -94,12 +72,6 @@ SWEP.BalanceStats = {
         RecoilResetTime = 0.25,
         RecoilDissipationRate = 5,
         RecoilFirstShotMult = 0.8,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilPerShot = 2,
@@ -112,12 +84,12 @@ SWEP.TTTReplace = TacRP.TTTReplacePreset.Pistol
 
 // "ballistics"
 
-SWEP.Damage_Max = 28
+SWEP.Damage_Max = 32
 SWEP.Damage_Min = 8
 SWEP.Range_Min = 300
 SWEP.Range_Max = 1500
 SWEP.Penetration = 3 // units of metal this weapon can penetrate
-SWEP.ArmorPenetration = 0.6
+SWEP.ArmorPenetration = 0.5
 SWEP.ArmorBonus = 0.25
 
 SWEP.MuzzleVelocity = 8000
@@ -125,7 +97,7 @@ SWEP.MuzzleVelocity = 8000
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 3,
     [HITGROUP_CHEST] = 1,
-    [HITGROUP_STOMACH] = 1.25,
+    [HITGROUP_STOMACH] = 1,
     [HITGROUP_LEFTARM] = 1,
     [HITGROUP_RIGHTARM] = 1,
     [HITGROUP_LEFTLEG] = 0.75,
@@ -137,7 +109,8 @@ SWEP.BodyDamageMultipliers = {
 
 SWEP.Firemode = 1
 
-SWEP.RPM = 420
+SWEP.RPM = 400
+SWEP.RPMMultSemi = 0.75
 
 SWEP.Spread = 0.007
 SWEP.RecoilSpreadPenalty = 0.0065

@@ -4,18 +4,21 @@ local flaremat = Material("effects/whiteflare")
 function SWEP:DrawLaser(pos, ang, strength, thirdperson)
     strength = strength or 1
 
+    local alwaysacc = self:GetValue("LaserAlwaysAccurate")
     local behavior = (self:GetValue("ScopeHideWeapon") and self:IsInScope())
     local vm = self:GetOwner():IsPlayer() and self:GetOwner():GetViewModel()
     local curr_seq = IsValid(vm) and vm:GetSequenceName(vm:GetSequence())
 
     local delta = behavior and 1 or 0
 
-    if IsValid(vm) and TacRP.ConVars["true_laser"]:GetBool() and (self:GetBlindFireMode() <= 1) and !self:GetCustomize() and !behavior then
-        local d1 = 1
-        if TacRP.ConVars["laser_beam"]:GetBool() then
-            d1 = math.min((CurTime() - self:GetNextPrimaryFire()) / 2, (CurTime() - self:GetNextSecondaryFire()) / 2)
+    if IsValid(vm) and (alwaysacc or TacRP.ConVars["true_laser"]:GetBool()) and (self:GetBlindFireMode() <= 1) and !self:GetCustomize() and !behavior then
+        local d1 = (CurTime() - self:GetNextSecondaryFire()) / 1
+        if alwaysacc then
+            d1 = 1
+        elseif TacRP.ConVars["laser_beam"]:GetBool() then
+            d1 = math.min((CurTime() - self:GetNextPrimaryFire()) / 2, (CurTime() - self:GetNextSecondaryFire()) / 1)
         elseif self:GetValue("RPM") < 120 then
-            d1 = math.min(d1, (CurTime() - self:GetNextPrimaryFire()) / 0.5)
+            d1 = math.min((CurTime() - self:GetNextPrimaryFire()) / 0.5, (CurTime() - self:GetNextSecondaryFire()) / 1)
         end
 
         local d2 = (curr_seq == "reload_start") and 0 or 1
@@ -79,22 +82,55 @@ end
 function SWEP:DrawLasers(wm)
     wm = wm or false
 
+    if self.Laser and self:GetTactical() then
+        local power = self.LaserPower or 2
+        if wm and self.LaserQCAttachmentWM then
+            local att = self:GetAttachment(self.LaserQCAttachmentWM)
+            if att then
+                self:DrawLaser(att.Pos, att.Ang, power, true)
+            end
+        elseif IsValid(self:GetOwner():GetViewModel()) and self.LaserQCAttachmentVM then
+            local vm = self:GetOwner():GetViewModel()
+            local att = vm:GetAttachment(self.LaserQCAttachmentVM)
+            if att then
+                local pos = TacRP.FormatViewModelAttachment(self.ViewModelFOV, att.Pos, false)
+                self:DrawLaser(pos, att.Ang, power)
+            end
+        end
+    end
+
     for i, k in pairs(self.Attachments) do
         if !k.Installed then continue end
 
         local atttbl = TacRP.GetAttTable(k.Installed)
 
-        local power = 2
+        local power = atttbl.LaserPower or 2
 
         if atttbl.Laser and self:GetTactical() then
-            if wm and IsValid(k.WModel) then
-                if self:GetOwner():IsPlayer() then
-                    self:DrawLaser(k.WModel:GetPos(), self:GetShootDir(), power, true)
-                else
-                    self:DrawLaser(k.WModel:GetPos(), k.WModel:GetAngles(), power, true)
+            if wm then
+                if atttbl.LaserQCAttachmentWM then
+                    local att = self:GetAttachment(atttbl.LaserQCAttachmentWM)
+                    if att then
+                        self:DrawLaser(att.Pos, self:GetOwner():IsPlayer() and self:GetShootDir() or att.Ang, power, true)
+                    end
+                elseif IsValid(k.WModel) then
+                    if self:GetOwner():IsPlayer() then
+                        self:DrawLaser(k.WModel:GetPos(), self:GetShootDir(), power, true)
+                    else
+                        self:DrawLaser(k.WModel:GetPos(), k.WModel:GetAngles(), power, true)
+                    end
                 end
-            elseif IsValid(k.VModel) then
-                self:DrawLaser(k.VModel:GetPos() + (k.VModel:GetAngles():Up() * 0.75), k.VModel:GetAngles(), power)
+            else
+                if IsValid(self:GetOwner():GetViewModel()) and atttbl.LaserQCAttachmentVM then
+                    local vm = self:GetOwner():GetViewModel()
+                    local att = vm:GetAttachment(atttbl.LaserQCAttachmentVM)
+                    if att then
+                        local pos = TacRP.FormatViewModelAttachment(self.ViewModelFOV, att.Pos, false)
+                        self:DrawLaser(pos, att.Ang, power)
+                    end
+                elseif IsValid(k.VModel) then
+                    self:DrawLaser(k.VModel:GetPos() + (k.VModel:GetAngles():Up() * 0.75), k.VModel:GetAngles(), power)
+                end
             end
         end
     end

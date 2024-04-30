@@ -5,13 +5,14 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "HK P2000"
+SWEP.AbbrevName = "P2000"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "3Security"
-SWEP.SubCatType = "1Sidearm"
+SWEP.SubCatType = "1Pistol"
 
-SWEP.Description = "Well-rounded police handgun."
-SWEP.Description_Quote = "It's so fucking boring."
+SWEP.Description = "Well-rounded, run-of-the-mill police handgun."
+SWEP.Description_Quote = "\"Los! Los! Los!\""
 
 SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Heckler & Koch"
@@ -27,9 +28,9 @@ SWEP.Slot = 1
 
 SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
-        Damage_Max = 26,
+        Damage_Max = 27,
         Damage_Min = 12,
-        RPM = 500,
+        RPM = 450,
 
         BodyDamageMultipliers = {
             [HITGROUP_HEAD] = 3,
@@ -41,12 +42,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 15,
@@ -54,6 +49,7 @@ SWEP.BalanceStats = {
         Range_Min = 500,
         Range_Max = 2000,
         RPM = 420,
+        RPMMultSemi = 1,
 
         RecoilResetInstant = true,
         RecoilMaximum = 8,
@@ -73,24 +69,12 @@ SWEP.BalanceStats = {
         },
 
         ReloadTimeMult = 1.2 * 1.25,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.9,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 9,
         Damage_Min = 4,
         RPM = 500,
         RecoilKick = 4,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
 }
 
@@ -98,17 +82,18 @@ SWEP.TTTReplace = TacRP.TTTReplacePreset.Pistol
 
 // "ballistics"
 
-SWEP.Damage_Max = 24
+SWEP.Damage_Max = 25
 SWEP.Damage_Min = 10
-SWEP.Range_Min = 500
+SWEP.Range_Min = 400
 SWEP.Range_Max = 2000
 SWEP.Penetration = 3
 SWEP.ArmorPenetration = 0.55
+SWEP.ArmorBonus = 0.5
 
 SWEP.MuzzleVelocity = 11500
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 3,
+    [HITGROUP_HEAD] = 4,
     [HITGROUP_CHEST] = 1,
     [HITGROUP_STOMACH] = 1,
     [HITGROUP_LEFTARM] = 1,
@@ -122,7 +107,8 @@ SWEP.BodyDamageMultipliers = {
 
 SWEP.Firemode = 1
 
-SWEP.RPM = 450
+SWEP.RPM = 400
+SWEP.RPMMultSemi = 0.8
 
 SWEP.Spread = 0.0055
 
@@ -144,8 +130,8 @@ SWEP.CanBlindFire = true
 // handling
 
 SWEP.MoveSpeedMult = 1
-SWEP.ShootingSpeedMult = 0.5
-SWEP.SightedSpeedMult = 0.5
+SWEP.ShootingSpeedMult = 0.9
+SWEP.SightedSpeedMult = 0.8
 
 SWEP.ReloadSpeedMult = 0.75
 

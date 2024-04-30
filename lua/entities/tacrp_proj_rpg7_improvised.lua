@@ -29,6 +29,7 @@ DEFINE_BASECLASS(ENT.Base)
 
 function ENT:SetupDataTables()
     self:NetworkVar("Bool", 0, "NoBooster")
+    self:NetworkVar("Entity", 0, "Weapon")
 end
 
 function ENT:Initialize()
@@ -60,8 +61,8 @@ function ENT:Initialize()
             end
             phys:AddAngleVelocity(VectorRand() * 180)
         else
-            self.BoostTime = math.Rand(1, 5)
-            phys:SetVelocityInstantaneous(self:GetForward() * math.Rand(1500, 4000))
+            self.BoostTime = math.Rand(1, 3)
+            phys:SetVelocityInstantaneous(self:GetForward() * math.Rand(3000, 6000))
         end
     end
 end
@@ -113,14 +114,15 @@ function ENT:Detonate()
         return
     end
 
+    local mult = TacRP.ConVars["mult_damage_explosive"]:GetFloat()
     if self.NPCDamage then
         util.BlastDamage(self, attacker, self:GetPos(), 350, 100)
     else
         // util.BlastDamage(self, attacker, self:GetPos(), 128, math.Rand(300, 700))
-        util.BlastDamage(self, attacker, self:GetPos(), 400, math.Rand(90, 120))
+        util.BlastDamage(self, attacker, self:GetPos(), 400, math.Rand(100, 150) * mult)
         self:FireBullets({
             Attacker = attacker,
-            Damage = math.Rand(500, 1000),
+            Damage = math.Rand(500, 1000) * mult,
             Tracer = 0,
             Src = self:GetPos(),
             Dir = self:GetForward(),
@@ -151,7 +153,7 @@ end
 function ENT:PhysicsUpdate(phys)
     if self:GetNoBooster() then return end
     local len = phys:GetVelocity():Length()
-    local f = math.Clamp(len / 4000, 0, 1)
+    local f = math.Clamp(len / 5000, 0, 1)
     if phys:IsGravityEnabled() then
         phys:AddVelocity(self:GetForward() * math.Rand(0, Lerp(f, 100, 10)))
         phys:AddAngleVelocity(VectorRand() * Lerp(f, 8, 2))

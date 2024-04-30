@@ -57,9 +57,7 @@ function SWEP:ScopeToggle(setlevel)
 
     if level == self:GetScopeLevel() then return end
 
-    if IsFirstTimePredicted() then
-        self:SetScopeLevel(level)
-    end
+    self:SetScopeLevel(level)
 
     if level > 0 then
         self:ToggleBlindFire(TacRP.BLINDFIRE_NONE)
@@ -69,7 +67,13 @@ function SWEP:ScopeToggle(setlevel)
         self:SetLastScopeTime(CurTime())
     end
 
-    if CLIENT then
+    -- HACK: In singleplayer, SWEP:Think is called on client but IsFirstTimePredicted is NEVER true.
+    -- This causes ScopeToggle to NOT be called on client in singleplayer...
+    -- GenerateAutoSight needs to run clientside or scopes will break. Good old CallOnClient it is.
+
+    if SERVER and game.SinglePlayer() then
+        self:CallOnClient("GenerateAutoSight")
+    elseif CLIENT and (IsFirstTimePredicted() or game.SinglePlayer()) then
         self:GenerateAutoSight()
         self.LastHintLife = CurTime()
     end
@@ -100,7 +104,7 @@ end
 function SWEP:IsInScope()
     local sightdelta = self:Curve(self:GetSightDelta())
 
-    return (SERVER or !self:GetPeeking()) and ((self:GetScopeLevel() > 0 and sightdelta > 0.5) or (sightdelta > 0.9))
+    return (SERVER or !self:GetPeeking()) and !self:GetSafe() and ((self:GetScopeLevel() > 0 and sightdelta > 0.5) or (sightdelta > 0.9))
 end
 
 function SWEP:DoScope()
@@ -172,28 +176,29 @@ end
 function SWEP:ThinkSights()
     if !IsValid(self:GetOwner()) then return end
 
-    if IsFirstTimePredicted() and self:GetOwner():KeyDown(IN_USE) and self:GetOwner():KeyPressed(IN_ATTACK2) then
+    local ftp = IsFirstTimePredicted()
+
+    if ftp and self:GetOwner():KeyDown(IN_USE) and self:GetOwner():KeyPressed(IN_ATTACK2) then
         self:ToggleSafety()
         return
     end
 
-    if IsFirstTimePredicted() and self:GetValue("Bipod") and self:GetOwner():KeyPressed(IN_ATTACK2) and !self:GetInBipod() and self:CanBipod() then
+    if ftp and self:GetValue("Bipod") and self:GetOwner():KeyPressed(IN_ATTACK2)
+            and !self:GetInBipod() and self:CanBipod() then
         self:EnterBipod()
     end
 
     local FT = FrameTime()
 
-    if self:GetSafe() then return end
-
     local sighted = self:GetScopeLevel() > 0
 
     local amt = self:GetSightAmount()
 
-    local adst = self:GetValue("AimDownSightsTime")
+    local adst = self:GetAimDownSightsTime()
 
     if sighted then
         if self:GetSprintLockTime() > CurTime() then
-            adst = adst + self:GetValue("SprintToFireTime")
+            adst = adst + self:GetSprintToFireTime()
         end
         amt = math.Approach(amt, 1, FT / adst)
     else
@@ -202,18 +207,19 @@ function SWEP:ThinkSights()
 
     self:SetSightDelta(amt)
 
+    if self:GetSafe() then return end
+
     if CLIENT then
         self:ThinkPeek()
     end
     local toggle = self:GetOwner():GetInfoNum("tacrp_toggleaim", 0) == 1
     local press, down = self:GetOwner():KeyPressed(IN_ATTACK2), self:GetOwner():KeyDown(IN_ATTACK2)
 
-    if self:DoOldSchoolScopeBehavior() and press then
-        self.Primary.Automatic = false
+    if (!self:GetValue("Scope") or self:DoOldSchoolScopeBehavior()) and down then
         self:Melee()
-    elseif sighted and ((toggle and press) or (!toggle and !down)) then
+    elseif sighted and ((toggle and press and ftp) or (!toggle and !down)) then
         self:ScopeToggle(0)
-    elseif !sighted and ((toggle and press) or (!toggle and down)) then
+    elseif !sighted and ((toggle and press and ftp) or (!toggle and down)) then
         self:ScopeToggle(1)
     end
 end
@@ -335,36 +341,23 @@ function SWEP:HasOptic()
 end
 
 function SWEP:DoOldSchoolScopeBehavior()
-    return TacRP.GetBalanceMode() == TacRP.BALANCE_OLDSCHOOL and !self:HasOptic()
+    return (TacRP.ConVars["oldschool"]:GetBool() or TacRP.GetBalanceMode() == TacRP.BALANCE_OLDSCHOOL)
+            and !self:HasOptic()
 end
 
--- function SWEP:CheckFlashlightPointing()
---     if game.SinglePlayer() then return 0 end
---     if !TacRP.ConVars["flashlight_blind"]:GetBool() then return 0 end
---     if self.FlashlightPointingCache and self.FlashlightPointingCache[2] == CurTime() then return self.FlashlightPointingCache[1] end
---     local src0 = self:GetOwner():EyePos()
---     local v = 0
---     for _, ply in pairs(player.GetAll()) do
---         if ply == self:GetOwner() or !ply:Alive() or !IsValid(ply:GetActiveWeapon()) or !ply:GetActiveWeapon().ArcticTacRP then continue end
---         --  !ply:GetActiveWeapon():GetValue("Flashlight") or !ply:GetActiveWeapon():GetTactical()
---         local src, dir = ply:GetActiveWeapon():GetMuzzleOrigin(), ply:GetActiveWeapon():GetShootDir():Forward()
---         local diff = src - src0
 
---         local add = 1
+function SWEP:GetAimDownSightsTime(base)
+    if base then
+        return self:GetBaseValue("AimDownSightsTime") * TacRP.ConVars["mult_aimdownsights"]:GetFloat()
+    else
+        return self:GetValue("AimDownSightsTime") * TacRP.ConVars["mult_aimdownsights"]:GetFloat()
+    end
+end
 
---         local dot = -dir:Dot(EyeAngles():Forward())
---         if dot < 0.707 then continue end
---         add = add * math.Clamp((dot - 0.707) / (1 - 0.707), 0, 1)
-
---         local distsqr = diff:LengthSqr()
---         add = add * (1 - math.Clamp(distsqr / 4194304, 0, 1)) ^ 1.25
-
---         local tr = util.QuickTrace(src, self:GetOwner():EyePos() - src, {self:GetOwner(), ply})
---         if tr.Fraction < 1 then continue end
-
---         v = v + add
---     end
-
---     self.FlashlightPointingCache = {v, CurTime()}
---     return v
--- end
+function SWEP:GetSprintToFireTime(base)
+    if base then
+        return self:GetBaseValue("SprintToFireTime") * TacRP.ConVars["mult_sprinttofire"]:GetFloat()
+    else
+        return self:GetValue("SprintToFireTime") * TacRP.ConVars["mult_sprinttofire"]:GetFloat()
+    end
+end

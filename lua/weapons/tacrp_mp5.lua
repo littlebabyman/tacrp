@@ -5,14 +5,16 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "HK MP5A3"
+SWEP.AbbrevName = "MP5A3"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "3Security"
 SWEP.SubCatType = "3Submachine Gun"
 
 SWEP.Description = "Well-balanced submachine gun known for its precision."
+SWEP.Description_Quote = "\"Now I have a machine gun. Ho, ho, ho.\""
 
-SWEP.Trivia_Caliber = "5.56x45mm"
+SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Heckler & Koch"
 SWEP.Trivia_Year = "1966"
 
@@ -35,12 +37,6 @@ SWEP.BalanceStats = {
         HipFireSpreadPenalty = 0.025,
 
         RecoilKick = 3.5,
-
-        MoveSpeedMult = 0.9,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.85,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 14,
@@ -60,14 +56,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.85,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.6,
-        ReloadSpeedMult = 0.7,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 8,
@@ -79,12 +67,6 @@ SWEP.BalanceStats = {
         HipFireSpreadPenalty = 0.02,
 
         RecoilKick = 2,
-
-        MoveSpeedMult = 0.9,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.85,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilMaximum = 20,

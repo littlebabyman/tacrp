@@ -108,8 +108,9 @@ local function setupttt()
         end
 
         wep.AmmoEnt = TacRP.TTTAmmoToEntity[wep.Ammo] or ""
-        -- You can tell how desperate I am in blocking the base from spawning
-        wep.AutoSpawnable = (wep.AutoSpawnable == nil and true) or wep.AutoSpawnable
+        if wep.AutoSpawnable == nil then
+            wep.AutoSpawnable = wep.Spawnable and !wep.AdminOnly
+        end
         wep.AllowDrop = wep.AllowDrop or true
 
         -- We have to do this here because TTT2 does a check for .Kind in WeaponEquip,
@@ -199,9 +200,6 @@ hook.Add( "OnEntityCreated", "TacRP_TTT_Spawn", function(ent)
                     if !ent:IsValid() then return end
                     -- wpnent:OnDrop(true)
                     ent:Remove()
-                    if IsValid(wpnent) then
-                        wpnent:NetworkWeapon()
-                    end
                 end)
             end
         end)

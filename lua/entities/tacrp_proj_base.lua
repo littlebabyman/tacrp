@@ -11,7 +11,6 @@ ENT.Spawnable                = false
 ENT.Model                    = ""
 
 local smokeimages = {"particle/smokesprites_0001", "particle/smokesprites_0002", "particle/smokesprites_0003", "particle/smokesprites_0004", "particle/smokesprites_0005", "particle/smokesprites_0006", "particle/smokesprites_0007", "particle/smokesprites_0008", "particle/smokesprites_0009", "particle/smokesprites_0010", "particle/smokesprites_0011", "particle/smokesprites_0012", "particle/smokesprites_0013", "particle/smokesprites_0014", "particle/smokesprites_0015", "particle/smokesprites_0016"}
-
 local function GetSmokeImage()
     return smokeimages[math.random(#smokeimages)]
 end
@@ -45,12 +44,18 @@ ENT.Armed = false
 
 ENT.SmokeTrail = false // leaves trail of smoke
 ENT.FlareColor = nil
+ENT.FlareSizeMin = 200
+ENT.FlareSizeMax = 250
 
 ENT.AudioLoop = nil
 
 ENT.BounceSounds = nil
 
 ENT.CollisionSphere = nil
+
+function ENT:SetupDataTables()
+    self:NetworkVar("Entity", 0, "Weapon")
+end
 
 function ENT:Initialize()
     if SERVER then
@@ -98,6 +103,8 @@ function ENT:Initialize()
         self.ArmTime = CurTime()
         self.Armed = true
     end
+
+    self:OnInitialize()
 end
 
 function ENT:OnRemove()
@@ -128,7 +135,6 @@ function ENT:OnTakeDamage(dmg)
 end
 
 function ENT:PhysicsCollide(data, collider)
-
     if IsValid(data.HitEntity) and data.HitEntity:GetClass() == "func_breakable_surf" then
         self:FireBullets({
             Attacker = self:GetOwner(),
@@ -155,7 +161,6 @@ function ENT:PhysicsCollide(data, collider)
         end
 
         if self.Delay == 0 or self.ExplodeOnImpact then
-            self:SetPos(data.HitPos)
             self:PreDetonate()
         end
     elseif self.ImpactDamage > 0 and IsValid(data.HitEntity) and (engine.ActiveGamemode() != "terrortown" or !data.HitEntity:IsPlayer()) then
@@ -209,6 +214,38 @@ end
 function ENT:OnThink()
 end
 
+function ENT:OnInitialize()
+end
+
+function ENT:DoSmokeTrail()
+    if CLIENT and self.SmokeTrail then
+        local emitter = ParticleEmitter(self:GetPos())
+
+        local smoke = emitter:Add(GetSmokeImage(), self:GetPos())
+
+        smoke:SetStartAlpha(50)
+        smoke:SetEndAlpha(0)
+
+        smoke:SetStartSize(10)
+        smoke:SetEndSize(math.Rand(50, 75))
+
+        smoke:SetRoll(math.Rand(-180, 180))
+        smoke:SetRollDelta(math.Rand(-1, 1))
+
+        smoke:SetPos(self:GetPos())
+        smoke:SetVelocity(-self:GetAngles():Forward() * 400 + (VectorRand() * 10))
+
+        smoke:SetColor(200, 200, 200)
+        smoke:SetLighting(true)
+
+        smoke:SetDieTime(math.Rand(0.75, 1.25))
+
+        smoke:SetGravity(Vector(0, 0, 0))
+
+        emitter:Finish()
+    end
+end
+
 function ENT:Think()
     if !IsValid(self) or self:GetNoDraw() then return end
 
@@ -229,34 +266,7 @@ function ENT:Think()
         self:PreDetonate()
     end
 
-    if CLIENT then
-        if self.SmokeTrail then
-            local emitter = ParticleEmitter(self:GetPos())
-
-            local smoke = emitter:Add(GetSmokeImage(), self:GetPos())
-
-            smoke:SetStartAlpha(50)
-            smoke:SetEndAlpha(0)
-
-            smoke:SetStartSize(10)
-            smoke:SetEndSize(math.Rand(50, 75))
-
-            smoke:SetRoll(math.Rand(-180, 180))
-            smoke:SetRollDelta(math.Rand(-1, 1))
-
-            smoke:SetPos(self:GetPos())
-            smoke:SetVelocity(-self:GetAngles():Forward() * 400 + (VectorRand() * 10))
-
-            smoke:SetColor(200, 200, 200)
-            smoke:SetLighting(true)
-
-            smoke:SetDieTime(math.Rand(0.75, 1.25))
-
-            smoke:SetGravity(Vector(0, 0, 0))
-
-            emitter:Finish()
-        end
-    end
+    self:DoSmokeTrail()
 
     self:OnThink()
 end
@@ -314,7 +324,7 @@ function ENT:Draw()
 
     if self.FlareColor then
         render.SetMaterial(mat)
-        render.DrawSprite(self:GetPos() + (self:GetAngles():Forward() * -16), math.Rand(200, 250), math.Rand(200, 250), self.FlareColor)
+        render.DrawSprite(self:GetPos() + (self:GetAngles():Forward() * -16), math.Rand(self.FlareSizeMin, self.FlareSizeMax), math.Rand(self.FlareSizeMin, self.FlareSizeMax), self.FlareColor)
     end
 end
 

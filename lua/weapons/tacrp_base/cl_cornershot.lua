@@ -30,7 +30,7 @@ local lastrendertime = 0
 local fps = 30
 
 function SWEP:DoRT()
-    if !self:GetBlindFire() then lastblindfire = false return end
+    if !self:GetBlindFire() and !IsValid(self:GetCornershotEntity()) then lastblindfire = false return end
     if TacRP.OverDraw then return end
 
     if !lastblindfire then
@@ -42,7 +42,11 @@ function SWEP:DoRT()
     local angles = self:GetShootDir()
     local origin = self:GetMuzzleOrigin()
 
-    if self:GetBlindFireMode() == TacRP.BLINDFIRE_KYS then
+    if IsValid(self:GetCornershotEntity()) then
+        origin = self:GetCornershotEntity():LocalToWorld(self:GetCornershotEntity().CornershotOffset)
+        angles = self:GetCornershotEntity():LocalToWorldAngles(self:GetCornershotEntity().CornershotAngles)
+        TacRP.CornerCamDrawSelf = true
+    elseif self:GetBlindFireMode() == TacRP.BLINDFIRE_KYS then
         local bone = self:GetOwner():LookupBone("ValveBiped.Bip01_R_Hand")
 
         if bone then
@@ -52,7 +56,7 @@ function SWEP:DoRT()
             angles:RotateAroundAxis(angles:Forward(), 180)
             origin = pos
 
-            TacRP.SuicideCornerCam = true
+            TacRP.CornerCamDrawSelf = true
         end
     end
 
@@ -61,7 +65,7 @@ function SWEP:DoRT()
         y = 0,
         w = rt_w,
         h = rt_h,
-        aspect = 4/3,
+        aspect = 4 / 3,
         angles = angles,
         origin = origin,
         drawviewmodel = false,
@@ -77,7 +81,7 @@ function SWEP:DoRT()
         TacRP.OverDraw = false
     end
 
-    TacRP.SuicideCornerCam = false
+    TacRP.CornerCamDrawSelf = false
 
     DrawColorModify({
         ["$pp_colour_addr"] = 0.25 * 132 / 255,
@@ -155,7 +159,7 @@ end
 
 function SWEP:DoCornershot()
 
-    if !self:GetBlindFire() then lastblindfire = false return end
+    if !self:GetBlindFire() and !IsValid(self:GetCornershotEntity()) then lastblindfire = false return end
 
     local w = TacRP.SS(640 / 4)
     local h = TacRP.SS(480 / 4)
@@ -165,8 +169,8 @@ function SWEP:DoCornershot()
     render.DrawTextureToScreenRect(rtmat, x, y, w, h)
 end
 
-hook.Add("ShouldDrawLocalPlayer", "TacRP_SuicideCornerCam", function(ply)
-    if TacRP.SuicideCornerCam then
+hook.Add("ShouldDrawLocalPlayer", "TacRP_CornerCamDrawSelf", function(ply)
+    if TacRP.CornerCamDrawSelf then
         return true
     end
 end)

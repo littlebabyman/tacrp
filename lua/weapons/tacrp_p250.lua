@@ -5,10 +5,11 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "SIG P250"
+SWEP.AbbrevName = "P250"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "2Operator"
-SWEP.SubCatType = "1Sidearm"
+SWEP.SubCatType = "1Pistol"
 
 SWEP.Description = "Powerful handgun that exchanges capacity for damage and precision."
 
@@ -42,12 +43,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Description = "Powerful handgun that exchanges fire rate for damage and precision.",
@@ -57,6 +52,7 @@ SWEP.BalanceStats = {
         Range_Min = 800,
         Range_Max = 2000,
         RPM = 200,
+        RPMMultSemi = 1,
 
         RecoilResetInstant = true,
         RecoilMaximum = 5,
@@ -77,12 +73,6 @@ SWEP.BalanceStats = {
         },
 
         ReloadTimeMult = 1.1 * 1.25,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.9,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 18,
@@ -90,12 +80,6 @@ SWEP.BalanceStats = {
         Range_Min = 900,
         Range_Max = 2800,
         RPM = 450,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
 }
 
@@ -109,14 +93,14 @@ SWEP.Range_Min = 800 // distance for which to maintain maximum damage
 SWEP.Range_Max = 2500 // distance at which we drop to minimum damage
 SWEP.Penetration = 7 // units of metal this weapon can penetrate
 SWEP.ArmorPenetration = 0.775
-SWEP.ArmorBonus = 0.75
+SWEP.ArmorBonus = 1
 
 SWEP.MuzzleVelocity = 11000
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 5,
+    [HITGROUP_HEAD] = 4.5,
     [HITGROUP_CHEST] = 1,
-    [HITGROUP_STOMACH] = 1.25,
+    [HITGROUP_STOMACH] = 1,
     [HITGROUP_LEFTARM] = 1,
     [HITGROUP_RIGHTARM] = 1,
     [HITGROUP_LEFTLEG] = 0.75,
@@ -129,6 +113,7 @@ SWEP.BodyDamageMultipliers = {
 SWEP.Firemode = 1
 
 SWEP.RPM = 500
+SWEP.RPMMultSemi = 0.7
 
 SWEP.Spread = 0.004
 

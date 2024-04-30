@@ -16,7 +16,7 @@ SWEP.Trivia_Caliber = "40mm Rockets"
 SWEP.Trivia_Manufacturer = "NPO Bazalt"
 SWEP.Trivia_Year = "1961"
 
-SWEP.Faction = TacRP.FACTION_NEUTRAL
+SWEP.Faction = TacRP.FACTION_MILITIA
 SWEP.Credits = "Assets: Tactical Intervention"
 
 SWEP.ViewModel = "models/weapons/tacint/v_rpg7.mdl"
@@ -29,20 +29,8 @@ SWEP.SlotAlt = 4
 
 SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
-        MoveSpeedMult = 0.8,
-        ShootingSpeedMult = 0.5,
-        SightedSpeedMult = 0.5,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 0.8,
     },
     [TacRP.BALANCE_TTT] = {
-        ReloadTimeMult = 1.1,
-
-        MoveSpeedMult = 0.8,
-        ShootingSpeedMult = 0.5,
-        SightedSpeedMult = 0.5,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 0.25,
     },
 }
 
@@ -54,7 +42,7 @@ SWEP.Range_Max = 7000
 SWEP.Range_Min = 4000
 
 SWEP.ShootEnt = "tacrp_proj_rpg7"
-SWEP.ShootEntForce = 10000
+SWEP.ShootEntForce = 6000
 
 SWEP.Num = 1
 
@@ -77,7 +65,7 @@ SWEP.RecoilFirstShotMult = 1 // multiplier for the first shot's recoil amount
 SWEP.RecoilVisualKick = 5
 SWEP.RecoilVisualShake = 0.2
 
-SWEP.RecoilKick = 15
+SWEP.RecoilKick = 0
 
 SWEP.RecoilSpreadPenalty = 0 // extra spread per one unit of recoil
 

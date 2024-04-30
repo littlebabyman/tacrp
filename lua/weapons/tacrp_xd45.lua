@@ -34,19 +34,13 @@ SWEP.BalanceStats = {
         HipFireSpreadPenalty = 0.025,
         RecoilKick = 8,
         FreeAimMaxAngle = 4,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 20,
         Damage_Min = 5,
-        Range_Min = 300,
-        Range_Max = 1600,
-        RPM = 700,
+        Range_Min = 200,
+        Range_Max = 1200,
+        RPM = 650,
 
         Spread = 0.0125,
         FreeAimMaxAngle = 4,
@@ -66,14 +60,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.7,
-        ReloadSpeedMult = 0.8,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 15,
@@ -83,12 +69,6 @@ SWEP.BalanceStats = {
         HipFireSpreadPenalty = 0.025,
         RecoilKick = 8,
         FreeAimMaxAngle = 4,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilMaximum = 20
@@ -99,12 +79,13 @@ SWEP.TTTReplace = TacRP.TTTReplacePreset.MachinePistol
 
 // "ballistics"
 
-SWEP.Damage_Max = 32
+SWEP.Damage_Max = 35
 SWEP.Damage_Min = 6
-SWEP.Range_Min = 500
+SWEP.Range_Min = 300
 SWEP.Range_Max = 1500
 SWEP.Penetration = 4
 SWEP.ArmorPenetration = 0.6
+SWEP.ArmorBonus = 0.5
 
 SWEP.MuzzleVelocity = 9000
 
@@ -138,7 +119,7 @@ SWEP.RecoilKick = 6
 SWEP.RecoilStability = 0.15
 
 SWEP.RecoilSpreadPenalty = 0.0025
-SWEP.HipFireSpreadPenalty = 0.02
+SWEP.HipFireSpreadPenalty = 0.03
 
 SWEP.CanBlindFire = true
 
@@ -262,6 +243,7 @@ SWEP.ProceduralIronFire = {
 SWEP.ShootTimeMult = 0.5
 
 SWEP.LastShot = true
+SWEP.NoIdle = true
 
 // attachments
 

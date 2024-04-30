@@ -5,12 +5,13 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "Sphinx 2000"
+SWEP.AbbrevName = "Sphinx"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "2Operator"
 SWEP.SubCatType = "2Machine Pistol"
 
-SWEP.Description = "Burst fire pistol with high firerate but long burst delay."
+SWEP.Description = "Premium pistol modified to be 3-round burst. High firerate but long burst delay."
 
 SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Sphinx Systems"
@@ -39,12 +40,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 15,
@@ -69,24 +64,10 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.9,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 12,
         Damage_Min = 7,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
 }
 
@@ -94,18 +75,18 @@ SWEP.TTTReplace = TacRP.TTTReplacePreset.Pistol
 
 // "ballistics"
 
-SWEP.Damage_Max = 22
+SWEP.Damage_Max = 25
 SWEP.Damage_Min = 12
 SWEP.Range_Min = 700
 SWEP.Range_Max = 2200
 SWEP.Penetration = 3 // units of metal this weapon can penetrate
 SWEP.ArmorPenetration = 0.65
-SWEP.ArmorBonus = 1.5
+SWEP.ArmorBonus = 1
 
 SWEP.MuzzleVelocity = 17500
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 5,
+    [HITGROUP_HEAD] = 4,
     [HITGROUP_CHEST] = 1,
     [HITGROUP_STOMACH] = 1,
     [HITGROUP_LEFTARM] = 1,
@@ -120,9 +101,9 @@ SWEP.BodyDamageMultipliers = {
 SWEP.Firemodes = {-3, 1}
 SWEP.RunawayBurst = true
 
-SWEP.RPM = 750
-SWEP.RPMMultBurst = 1.5
-SWEP.PostBurstDelay = 0.25
+SWEP.RPM = 800
+SWEP.RPMMultBurst = 1.25
+SWEP.PostBurstDelay = 0.33
 
 SWEP.Spread = 0.0035
 
@@ -137,6 +118,7 @@ SWEP.RecoilKick = 4
 SWEP.RecoilStability = 0.6
 
 SWEP.RecoilSpreadPenalty = 0.0045
+SWEP.HipFireSpreadPenalty = 0.024
 
 SWEP.CanBlindFire = true
 

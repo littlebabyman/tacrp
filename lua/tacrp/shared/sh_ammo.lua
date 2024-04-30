@@ -27,11 +27,11 @@ for _, i in pairs(ammotypes) do
     })
 
     if CLIENT then
-        language.Add(i .. "_ammo", TacRP:GetPhrase(i) or i)
+        language.Add(i .. "_ammo", TacRP:GetPhrase("ammo." .. i) or i)
     end
 end
 
-
+--[[]
 if CLIENT then
     hook.Add("InitPostEntity", "tacrp_hl2hud", function()
         if !HL2HUD then return end
@@ -61,3 +61,4 @@ if CLIENT then
         end
     end)
 end
+]]

@@ -1,4 +1,4 @@
-TacRP.Version = "17" // 2023-12-15
+TacRP.Version = "19" // 2024-04-01
 
 TacRP.PenTable = {
     [MAT_ANTLION]     = 0.1,
@@ -174,9 +174,6 @@ TacRP.BalanceUseTiers = {
 
 TacRP.BalanceDefaults = {
     [TacRP.BALANCE_SBOX] = {
-        RecoilVisualKick = 0.85,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_PVE] = {
         RecoilVisualKick = 0.75,
@@ -269,4 +266,13 @@ TacRP.ShellTypes = {
 }
 hook.Add("InitPostEntity", "tacrp_shelleffect", function()
     hook.Run("TacRP_LoadShellEffects", TacRP.ShellTypes)
+
+    if GetConVar("tacrp_phystweak"):GetBool() then
+        local v = physenv.GetPerformanceSettings().MaxVelocity
+        if v < 10000 then
+            physenv.SetPerformanceSettings({MaxVelocity = 10000})
+            print("[TacRP] Increasing MaxVelocity for projectiles to behave as intended! (" .. v .. "-> 10000)")
+            print("[TacRP] Disable this behavior with 'tacrp_phystweak 0'.")
+        end
+    end
 end)

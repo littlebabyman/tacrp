@@ -5,6 +5,7 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "IMI Mini Uzi"
+SWEP.AbbrevName = "Mini Uzi"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "2Operator"
@@ -26,11 +27,6 @@ SWEP.Slot = 1
 
 SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 12,
@@ -49,25 +45,11 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.7,
-        ReloadSpeedMult = 0.8,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 8,
         Damage_Min = 4,
         RPM = 850,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilSpreadPenalty = 0.0024
@@ -83,7 +65,8 @@ SWEP.Damage_Min = 6
 SWEP.Range_Min = 500
 SWEP.Range_Max = 2000
 SWEP.Penetration = 4
-SWEP.ArmorPenetration = 0.45
+SWEP.ArmorPenetration = 0.675
+SWEP.ArmorBonus = 0.5
 
 SWEP.MuzzleVelocity = 12500
 
@@ -109,7 +92,7 @@ SWEP.RPM = 950
 
 SWEP.Spread = 0.008
 SWEP.RecoilSpreadPenalty = 0.0018
-SWEP.HipFireSpreadPenalty = 0.01
+SWEP.HipFireSpreadPenalty = 0.014
 
 SWEP.ShootTimeMult = 0.5
 
@@ -160,6 +143,8 @@ SWEP.SprintPos = Vector(5, 0, -2)
 
 SWEP.SightAng = Angle(0.275, 0.1, 1)
 SWEP.SightPos = Vector(-3.65, -6.5, -3.4)
+
+SWEP.CorrectivePos = Vector(0.04, 0, 0.15)
 
 SWEP.HolsterVisible = true
 SWEP.HolsterSlot = TacRP.HOLSTER_SLOT_PISTOL

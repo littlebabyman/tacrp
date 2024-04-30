@@ -5,10 +5,11 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "HK USP"
+SWEP.AbbrevName = "USP"
 SWEP.Category = "Tactical RP" // "Tactical RP (Extras)"
 
 SWEP.SubCatTier = "3Security"
-SWEP.SubCatType = "1Sidearm"
+SWEP.SubCatType = "1Pistol"
 
 SWEP.Description = "Tactical pistol with good damage and range for its capacity."
 SWEP.Description_Quote = "The weapon of choice for free men."
@@ -35,13 +36,7 @@ SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
         Damage_Max = 32,
         Damage_Min = 12,
-        RPM = 450,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
+        RPM = 400,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 24,
@@ -49,6 +44,7 @@ SWEP.BalanceStats = {
         Range_Min = 500,
         Range_Max = 2200,
         RPM = 250,
+        RPMMultSemi = 1,
 
         RecoilResetInstant = true,
         RecoilMaximum = 5,
@@ -69,12 +65,6 @@ SWEP.BalanceStats = {
         },
 
         ReloadTimeMult = 1.25 * 1.25,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.9,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 15,
@@ -87,12 +77,6 @@ SWEP.BalanceStats = {
         RecoilDissipationRate = 5,
         RecoilFirstShotMult = 0.8,
         RecoilSpreadPenalty = 0.006,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
 }
 
@@ -100,20 +84,20 @@ SWEP.TTTReplace = TacRP.TTTReplacePreset.Pistol
 
 // "ballistics"
 
-SWEP.Damage_Max = 28
-SWEP.Damage_Min = 9
+SWEP.Damage_Max = 30
+SWEP.Damage_Min = 10
 SWEP.Range_Min = 450 // distance for which to maintain maximum damage
 SWEP.Range_Max = 1900 // distance at which we drop to minimum damage
 SWEP.Penetration = 5 // units of metal this weapon can penetrate
-SWEP.ArmorPenetration = 0.625
-SWEP.ArmorBonus = 0.75
+SWEP.ArmorPenetration = 0.575
+SWEP.ArmorBonus = 0.4
 
 SWEP.MuzzleVelocity = 9000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 3,
     [HITGROUP_CHEST] = 1,
-    [HITGROUP_STOMACH] = 1.25,
+    [HITGROUP_STOMACH] = 1,
     [HITGROUP_LEFTARM] = 1,
     [HITGROUP_RIGHTARM] = 1,
     [HITGROUP_LEFTLEG] = 0.75,
@@ -126,6 +110,7 @@ SWEP.BodyDamageMultipliers = {
 SWEP.Firemode = 1
 
 SWEP.RPM = 400
+SWEP.RPMMultSemi = 0.8
 
 SWEP.Spread = 0.004
 SWEP.RecoilSpreadPenalty = 0.006

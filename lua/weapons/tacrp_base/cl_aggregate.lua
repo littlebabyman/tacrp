@@ -5,7 +5,7 @@ function SWEP:GetReloadTime(base)
     if !valfunc(self, "ShotgunReload") then
         local seq = vm:LookupSequence(self:TranslateSequence("reload"))
         local basetime = vm:SequenceDuration(seq)
-        local mult = valfunc(self, "ReloadTimeMult")
+        local mult = valfunc(self, "ReloadTimeMult") / TacRP.ConVars["mult_reloadspeed"]:GetFloat()
 
         return basetime * mult
     else
@@ -17,7 +17,7 @@ function SWEP:GetReloadTime(base)
         local time_2 = vm:SequenceDuration(seq2)
         local time_3 = vm:SequenceDuration(seq3)
 
-        local mult = valfunc(self, "ReloadTimeMult")
+        local mult = valfunc(self, "ReloadTimeMult") / TacRP.ConVars["mult_reloadspeed"]:GetFloat()
 
         local basetime = time_1 + (time_2 * valfunc(self, "ClipSize")) + time_3
 
@@ -276,15 +276,15 @@ SWEP.StatGroups = {
             local r_mid = r_min + (r_max - r_min) / 2
             local d_diff = math.abs(d_max - d_min) / math.max(d_max, d_min)
             if d_max > d_min then
-                -- [50] 50% damage falloff range
-                score = score + math.Clamp((r_mid - (ttt and 750 or 1000)) / (ttt and 2000 or 4000), 0, 1) * 50
+                -- [60] 50% damage falloff range
+                score = score + math.Clamp((r_mid - (ttt and 250 or 500)) / (ttt and 1500 or 3000), 0, 1) * 60
 
-                -- [50] damage reduction from range
-                score = score + math.Clamp(1 - d_diff, 0, 1) ^ 0.8 * 50
+                -- [40] damage reduction from range
+                score = score + math.Clamp(1 - d_diff, 0, 1) ^ 0.8 * 40
             else
                 -- [40] free points
                 -- [40] 50% damage rampup range
-                score = score + 40 + math.Clamp(r_mid / (ttt and 2500 or 5000), 0, 1) * 40
+                score = score + 40 + math.Clamp(r_mid / (ttt and 1500 or 3000), 0, 1) * 40
                 -- print(r_mid, math.Clamp(1 - r_mid / 5000, 0, 1))
 
                 -- [20] damage reduction from range
@@ -405,13 +405,12 @@ SWEP.StatGroups = {
         Description = "rating.handling.desc",
         RatingFunction = function(self, base)
             local score = 0
-            local valfunc = base and self.GetBaseValue or self.GetValue
 
             -- [40] sprint
-            score = score + math.Clamp(1 - (valfunc(self, "SprintToFireTime") - 0.15) / 0.5, 0, 1) * 40
+            score = score + math.Clamp(1 - (self:GetSprintToFireTime(base) - 0.15) / 0.5, 0, 1) * 40
 
             -- [45] ads
-            score = score + math.Clamp(1 - (valfunc(self, "AimDownSightsTime") - 0.15) / 0.5, 0, 1) * 45
+            score = score + math.Clamp(1 - (self:GetAimDownSightsTime(base) - 0.15) / 0.5, 0, 1) * 45
 
             -- [15] deploy
             score = score + math.Clamp(1 - (self:GetDeployTime(base) - 0.5) / 1.5, 0, 1) * 15
@@ -536,7 +535,7 @@ SWEP.StatDisplay = {
         Description = "stat.damage.desc",
         Value = "Damage_Max",
         AggregateFunction = function(self, base, val)
-            if !self:IsDamageConstant(base) then return end
+            if !(self:IsDamageConstant(false) and self:IsDamageConstant(true)) then return end
             -- local valfunc = base and self.GetBaseValue or self.GetValue
             -- return math.Round(val * valfunc(self, "Num"), 0)
             return math.floor(val)
@@ -547,7 +546,7 @@ SWEP.StatDisplay = {
         Description = "stat.damage_max.desc",
         Value = "Damage_Max",
         AggregateFunction = function(self, base, val)
-            if self:IsDamageConstant(base) then return end
+            if self:IsDamageConstant(false) and self:IsDamageConstant(true) then return end
             -- local valfunc = base and self.GetBaseValue or self.GetValue
             -- return math.Round(val * valfunc(self, "Num"), 0)
             return math.floor(val)
@@ -558,10 +557,25 @@ SWEP.StatDisplay = {
         Description = "stat.damage_min.desc",
         Value = "Damage_Min",
         AggregateFunction = function(self, base, val)
-            if self:IsDamageConstant(base) then return end
+            if self:IsDamageConstant(false) and self:IsDamageConstant(true) then return end
             -- local valfunc = base and self.GetBaseValue or self.GetValue
             -- return math.Round(val * valfunc(self, "Num"), 0)
             return math.floor(val)
+        end,
+    },
+    {
+        Name = "stat.explosivedamage",
+        Description = "stat.explosivedamage.desc",
+        Value = "ExplosiveDamage",
+        DefaultValue = 0,
+    },
+    {
+        Name = "stat.explosiveradius",
+        Description = "stat.explosiveradius.desc",
+        Value = "ExplosiveRadius",
+        DefaultValue = 0,
+        DisplayFunction = function(self, base, val)
+            return self:RangeUnitize(val)
         end,
     },
     {
@@ -1039,6 +1053,9 @@ SWEP.StatDisplay = {
         Name = "stat.sprinttofire",
         Description = "stat.sprinttofire.desc",
         Value = "SprintToFireTime",
+        AggregateFunction = function(self, base, val)
+            return math.Round(self:GetSprintToFireTime(base), 3)
+        end,
         Unit = "unit.second",
         LowerIsBetter = true,
     },
@@ -1046,6 +1063,9 @@ SWEP.StatDisplay = {
         Name = "stat.aimdownsights",
         Description = "stat.aimdownsights.desc",
         Value = "AimDownSightsTime",
+        AggregateFunction = function(self, base, val)
+            return math.Round(self:GetAimDownSightsTime(base), 3)
+        end,
         Unit = "unit.second",
         LowerIsBetter = true,
         ValueCheck = "Scope",
@@ -1184,7 +1204,7 @@ SWEP.StatGroupsMelee = {
         RatingFunction = function(self, base)
             local valfunc = base and self.GetBaseValue or self.GetValue
 
-            return Lerp((valfunc(self, "MeleeDamage")) / 60, 0, 100)
+            return Lerp((valfunc(self, "MeleeDamage") - 10) / 50, 0, 100)
         end,
     },
     {

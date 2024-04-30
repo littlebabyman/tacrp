@@ -5,12 +5,14 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "Beretta 92FS Vertec" // Real variant, even though it sounds like a fake name Gooseman would come up with.
+SWEP.AbbrevName = "Vertec"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "4Consumer"
-SWEP.SubCatType = "1Sidearm"
+SWEP.SubCatType = "1Pistol"
 
 SWEP.Description = "Italian pistol with above average range and accuracy."
+SWEP.Description_Quote = "\"Yippie ki-yay, motherf*cker!\""
 
 SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Pietro Beretta"
@@ -41,19 +43,14 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 18,
-        Damage_Min = 14,
-        Range_Min = 750,
-        Range_Max = 2500,
-        RPM = 300,
+        Damage_Min = 10,
+        Range_Min = 600,
+        Range_Max = 1800,
+        RPM = 280,
+        RPMMultSemi = 1,
 
         RecoilSpreadPenalty = 0.0025,
         RecoilFirstShotMult = 0.75,
@@ -70,12 +67,6 @@ SWEP.BalanceStats = {
         },
 
         ReloadTimeMult = 1.15 * 1.25,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.9,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 9,
@@ -94,12 +85,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 1,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilSpreadPenalty = 0.002
@@ -110,17 +95,18 @@ SWEP.TTTReplace = TacRP.TTTReplacePreset.Pistol
 
 // "ballistics"
 
-SWEP.Damage_Max = 20
+SWEP.Damage_Max = 18
 SWEP.Damage_Min = 11
-SWEP.Range_Min = 800
+SWEP.Range_Min = 750
 SWEP.Range_Max = 1800
 SWEP.Penetration = 3
 SWEP.ArmorPenetration = 0.575
+SWEP.ArmorBonus = 0.5
 
 SWEP.MuzzleVelocity = 12000
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 4.5,
+    [HITGROUP_HEAD] = 4,
     [HITGROUP_CHEST] = 1,
     [HITGROUP_STOMACH] = 1,
     [HITGROUP_LEFTARM] = 1,
@@ -135,6 +121,7 @@ SWEP.BodyDamageMultipliers = {
 SWEP.Firemode = 1
 
 SWEP.RPM = 480
+SWEP.RPMMultSemi = 0.7
 
 SWEP.Spread = 0.002
 

@@ -5,12 +5,14 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "Ingram MAC-10"
+SWEP.AbbrevName = "MAC-10"
 SWEP.Category = "Tactical RP" // "Tactical RP (Extras)"
 
 SWEP.SubCatTier = "4Consumer"
 SWEP.SubCatType = "2Machine Pistol"
 
 SWEP.Description = "A bullet hose best used for point blank spray-and-pray."
+SWEP.Description_Quote ="\"Give me the motherf*ckin' gun, Tre!\""
 
 SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Military Armament Corporation"
@@ -31,14 +33,9 @@ SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
         Damage_Max = 20,
         Damage_Min = 5,
+        ClipSize = 40,
 
         RecoilKick = 4,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 10,
@@ -65,14 +62,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.7,
-        ReloadSpeedMult = 0.8,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 5,
@@ -80,12 +69,6 @@ SWEP.BalanceStats = {
 
         RecoilKick = 2,
         RecoilMaximum = 18,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilSpreadPenalty = 0.004,
@@ -98,12 +81,12 @@ SWEP.TTTReplace = TacRP.TTTReplacePreset.MachinePistol
 // "ballistics"
 
 SWEP.Damage_Max = 18
-SWEP.Damage_Min = 4
+SWEP.Damage_Min = 5
 SWEP.Range_Min = 300
 SWEP.Range_Max = 1500
 SWEP.Penetration = 3
 SWEP.ArmorPenetration = 0.45
-SWEP.ArmorBonus = 0.75
+SWEP.ArmorBonus = 0.25
 
 SWEP.MuzzleVelocity = 10000
 
@@ -141,14 +124,15 @@ SWEP.RecoilKick = 2.5
 SWEP.RecoilStability = 0.15
 
 SWEP.RecoilSpreadPenalty = 0.002
+SWEP.HipFireSpreadPenalty = 0.025
 
 SWEP.CanBlindFire = true
 
 // handling
 
-SWEP.MoveSpeedMult = 1
+SWEP.MoveSpeedMult = 0.95
 SWEP.ShootingSpeedMult = 0.5
-SWEP.SightedSpeedMult = 0.5
+SWEP.SightedSpeedMult = 0.7
 
 SWEP.ReloadSpeedMult = 0.6
 
@@ -191,7 +175,7 @@ SWEP.HolsterAng = Angle(90, 0, 0)
 
 // reload
 
-SWEP.ClipSize = 40
+SWEP.ClipSize = 32
 SWEP.Ammo = "pistol"
 
 SWEP.ReloadTimeMult = 1.2

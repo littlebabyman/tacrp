@@ -5,10 +5,11 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "AI AS50"
+SWEP.AbbrevName = "AS50"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "1Elite"
-SWEP.SubCatType = "7Sniper Rifle"
+SWEP.SubCatType = "9Anti-Materiel Rifle"
 
 SWEP.Description = "Semi-automatic anti-materiel rifle that can easily decimate any person at any distance.\nEquipped with a 12x scope by default.\nFar too heavy to swing, so bashing is out of the question."
 
@@ -34,12 +35,6 @@ SWEP.BalanceStats = {
 
         Range_Min = 900,
         Range_Max = 5000,
-
-        MoveSpeedMult = 0.7,
-        ShootingSpeedMult = 0.5,
-        SightedSpeedMult = 0.5,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = { // this is a buyable weapon in TTT
         Description = "Semi-automatic anti-materiel rifle with integral bipod.\nCan kill in up to 2 shots regardless of distance.\nEquipped with a 12x scope by default.",
@@ -62,14 +57,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.675,
             [HITGROUP_GEAR] = 0.6
         },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 0.8,
-        ShootingSpeedMult = 0.25,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.4,
-        ReloadSpeedMult = 0.25,
     },
     [TacRP.BALANCE_PVE] = {
         Description = "Semi-automatic anti-materiel rifle with integral bipod.\nEquipped with a 12x scope by default.",
@@ -78,12 +65,6 @@ SWEP.BalanceStats = {
         Damage_Min = 92,
         Range_Min = 4000,
         Range_Max = 8000,
-
-        MoveSpeedMult = 0.7,
-        ShootingSpeedMult = 0.5,
-        SightedSpeedMult = 0.55,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilDissipationRate = 3,
@@ -211,6 +192,7 @@ SWEP.CanMeleeAttack = false
 
 SWEP.ClipSize = 5
 SWEP.Ammo = "357"
+SWEP.AmmoTTT = "ti_sniper"
 
 SWEP.ReloadTimeMult = 1
 SWEP.DropMagazineImpact = "metal"

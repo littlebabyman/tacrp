@@ -513,21 +513,21 @@ The Soviet/AK themed expansion starring 9 weapons, including well-known AK varia
     {
         Title = "Update 17",
         Type = "Patch Notes",
-        Date = "2023-12-16",
+        Date = "2023-12-24",
         Author = "speedonerd",
-        Major = false,
-        Summary = "New Years update!",
+        Major = true,
+        Summary = "A holly jolly update",
         Contents = [[<body style="font-family:'Myriad Pro';color:white;font-size:125%;">
 <p>This is speedonerd speaking! I'm one of the other people working on this mess, mainly in the asset department (models, sounds, animations).
 <p>We've got quite the update here, one that brought on more things than we initially anticipated adding, including a bunch of new configuration options and a total melee system rework.
 
+<h2>They have guns...lots of guns...</h2>
+<p>NPC support now has a new dropdown menu, sorted by weapon type so you can easily find whatever weapon you're looking for. Within each category you can specify a certain weapon or have NPCs pick a random weapon from each quality tier.
+<p>And for those who enjoy chaos, we've included an option for NPCs to spawn with <i>any</i> weapon randomly. Enjoy a random rebel with no sense of self-preservation facerocketing you!
+
 <h2>drop me avp plz</h2>
 <p>There's now a dedicated button in the customization menu to drop your current weapon, with dropped weapons able to be picked up with your 'use' key. 
 <p>This synergizes with weapon slot restrictions, allowing you to swap weapons with any gun you find lying around with the press of a button.
-
-<h2>You kids today don't know how to circlestrafe!</h2>
-<p>Do you yearn for the good old days, when shooters were fun because they didn't have depth or good game balance? I did for a brief period, and it compelled me to quickly integrate a new balance mode that removed ironsights and tightened up weapon spread. 
-<p>It didn't really pan out how I had hoped—TacRP is built around so many modern mechanics and systems that it's hard to make it "old school" without stripping away nearly all of them. Regardless, what I ended up with before abandoning it is still accessible via the console for preservation's sake, if you're interested.
 
 <h2>It's like wading through molasses.</h2>
 <p>In case you don't like how a certain balancing scheme punishes movement, there are now convars for each of the movement penalties that let you turn them off individually. 
@@ -535,30 +535,37 @@ The Soviet/AK themed expansion starring 9 weapons, including well-known AK varia
 
 <h2>What happened to my freakin' car?!</h2>
 <p>Fighting against vehicles with TacRP will now be a lot more interesting thanks to some hackery and workarounds to make infantry-to-vehicle combat functional.
-<p>TacRP now uses LVS' armor penetration system, allowing gunfire, shot grenades and RPG rockets to pierce vehicle armor and deal damage based on the amount they pentrate (calculated via projectile velocity). 
-<p>Combine Hunter Choppers, infamous for their hardcoded immunity to everything but airboat gun damage, can now take damage from direct hits with RPG rockets.
+<p>TacRP now works with LVS' armor penetration system, allowing gunfire, launched grenades and rockets to pierce vehicle armor. 
+<p>Combine Hunter Choppers, infamous for their hardcoded immunity to everything but airboat gun damage, can now take damage from direct hits with rockets.
 
 <h2>Now this...is a knife.</h2>
 <p>TacRP's melee system has been very superficial for a while now with little statistical difference between weapons (which is especially prominent if you have Brute Force installed) and were more goofy than they were actually viable. 
 <p>As such, we've remade the melee system with a host of new features, including actual weapon stats and a new attachment slot: Boost, which acts as a perk slot with various passive benefits from simple stat boosts to unique effects like regaining health. 
 <p>The base pack's knives and every weapon from Brute Force have been updated to use this new system.
 
+<h2>You kids today don't know how to circlestrafe!</h2>
+<p>Do you yearn for the good old days, when shooters were fun because they didn't have depth or good game balance? I did for a brief period, and it compelled me to quickly integrate a new balance mode that removed ironsights and tightened up weapon spread. 
+<p>It didn't really pan out how I had hoped—TacRP is built around so many modern mechanics and systems that it's hard to make it "old school" without stripping away nearly all of them. 
+<p>Regardless, what I ended up with before abandoning it is still accessible via the console for preservation's sake, if you're interested.
+
 <hr>
 
 <h3>Changelist</h3>
 <ul>
+<li><b>Major Change:</b> Melee attributes & boost perks.
+<li><b>Major Change:</b> NPC weapon dropdown with random roll option.
+<li><b>Major Change:</b> Weapon dropping and swapping. TacRP weapons will now require pressing +USE to pick up - this can be disabled.
 <li><b>Added:</b> New icons for Deadeye and Grenadier.
-<li><b>Added:</b> Weapon dropping and swapping. TacRP weapons will now require pressing +USE to pick up - this can be disabled.
-<li><b>Added:</b> Old School balance mode. Enter "tacrp_balance 4" in console to access.
+<li><b>Added:</b> Unfinished Old School balance mode. Enter "tacrp_balance 4" in console to access.
 <li><b>Added:</b> CVars for toggling specific movement penalties.
 <li><b>Added:</b> Restored concealment accessory. Hides weapon when holstered.
 <li><b>Added:</b> Bipod hint will now draw with backup HUD.
+<li><b>Added:</b> 40mm grenade casing eject effect.
+<li><b>Added:</b> Dual MTX tactical attachment slot, attached to the right gun.
 <li><b>Changed:</b> Gunfire can now penetrate LVS vehicles.
 <li><b>Changed:</b> RPG rockets can now penetrate LVS vehicles and damage Combine Helicopter NPCs on a direct hit.
 <li><b>Changed:</b> RPG-7 & M320 moved to separate launchers weapon category.
 <li><b>Changed:</b> Added "Special Weapon" category for unorthodox weapons that don't fit any other category (currently only used by expansion weapons).
-<li><b>Changed:</b> Dual MTX tactical attachment slot, attached to the right gun.
-<li><b>Changed:</b> New Deadeye and Grenadier icons.
 <li><b>Changed:</b> New trigger category for 4-position FCG weapons (weapons with auto, burst & semi modes). Blocks the Forced Reset and Burst triggers.
 <li><b>Rebalance:</b> RPG rockets do more direct impact damage.
 <li><b>Rebalance:</b> Deadeye grants increased zoom distance (again).
@@ -579,30 +586,11 @@ The Soviet/AK themed expansion starring 9 weapons, including well-known AK varia
     {
         Title = "U17 Expansions",
         Type = "Patch Notes",
-        Date = "2023-12-16",
+        Date = "2023-12-24",
         Author = "speedonerd",
         Major = false,
-        Summary = "New Year, New Weapons.",
+        Summary = "Touchups to existing packs.",
         Contents = [[<body style="font-family:'Myriad Pro';color:white;font-size:125%;">
-<p>My creative spark refuses to die and the weapon list only grows (we'll probably hit 200 before the end of 2024), so out comes yet another expansion, along with further touch ups to existing ones.
-
-<hr>
-
-<h2>Heavy Metal<i>(New!)</i></h2>
-<p><input type='submit' value='Open Workshop' onclick='console.log("RUNLUA:gui.OpenURL(\"https://steamcommunity.com/sharedfiles/filedetails/?id=3102297293\")")' /></p>
-<p>A pack born out of a spontaneous idea, more niche in its focus, with 7 brand new, ridiculously powerful weapons for when standard weaponry just isn't enough.
-<ul>
-<li>Pancor Jackhammer
-<li>H&K XM25 CDTE
-<li>Holland & Holland .600 Nitro Double Rifle
-<li>Franchi SPAS-12
-<li>Franchi SPAS-15
-<li>Taurus Raging Judge "Executioner"
-<li>SSK .950 JDJ "Fat Mac" (you can shoulder fire it because video gane)
-</ul>
-
-<hr>
-
 <h3>Changelist</h3>
 <ul>
 <li><b>Added:</b> (ArmaLite Revolution) M16A1 refurbished bolt.
@@ -611,12 +599,177 @@ The Soviet/AK themed expansion starring 9 weapons, including well-known AK varia
 <li><b>Rebalance:</b> (Brute Force) All weapons have been updated to make use of the new melee stat system.
 <li><b>Changed:</b> (InterOps) Replaced Five-Seven model and firing sounds.
 <li><b>Changed:</b> (InterOps) Colt SMG restricted to using Colt 3x20 scope only.
-<li><b>Changed:</b> (InterOps) Chinalake now in launcher category.
+<li><b>Changed:</b> (InterOps) China Lake revamp - Touched up animations, now ejects spent casings.
 <li><b>Changed:</b> (InterOps) Automag animation touch-ups.
-<li><b>Changed:</b> (Special Delivery) Gyrojet updates - New firing sound, new animations, now in the "Special Weapon" category along with the Fat Mac.
+<li><b>Changed:</b> (Special Delivery) Gyrojet revamp - New firing sound, new animations, now in the "Special Weapon" category along with the Fat Mac.
 <li><b>Changed:</b> (Special Delivery) WA2000 animation improvements.
 <li><b>Changed:</b> (Special Delivery) Dual Berettas, USPs, 1911s & Deagles tactical attachment slot.
 </ul>]],
+    },
+    {
+        Title = "Update 17 Hotfix",
+        Type = "Patch Notes",
+        Date = "2023-12-31",
+        Author = "8Z",
+        Major = false,
+        Summary = "Quick fix for NPC issue.",
+        Contents = [[<body style="font-family:'Myriad Pro';color:white;font-size:125%;">
+<h3>Changelist</h3>
+<ul>
+<li><b>Fixed:</b> Error when spawning NPC with default weapon.
+</ul>]],
+    },
+    {
+        Title = "Update 18",
+        Type = "Patch Notes",
+        Date = "2024-01-07",
+        Author = "speedonerd",
+        Major = false,
+        Summary = "Small additions.",
+        Contents = [[<body style="font-family:'Myriad Pro';color:white;font-size:125%;">
+<p>Small update with a few fixes to compliment the new expansion.
+
+<h3>Changelist</h3>
+<ul>
+<li><b>Added:</b> News button in customization page.
+<li><b>Added:</b> Bind for HL2 flashlight when a tactical attachment is fitted (ALT + F).
+<li><b>Added:</b> Random any weapon option for NPCs.
+<li><b>Changed:</b> (TTT) Snipers now use 357 ammo instead of Deagle ammo.
+<li><b>Changed:</b> (TTT) New TTT2 sprint functionality.
+<li><b>Fixed:</b> (TTT) Quicknade convar errors in TTT2.
+<li><b>Fixed:</b> (TTT) General TTT2 networking improvements and fixes.
+</ul>]],
+    },
+    {
+        Title = "Heavy Duty Release",
+        Type = "Expansion Release",
+        Date = "2024-01-07",
+        Author = "speedonerd",
+        Major = true,
+        Summary = "New expansion and a new weapon for InterOps",
+        Contents = [[<body style="font-family:'Myriad Pro';color:white;font-size:125%;">
+<p>Yet another new expansion. Originally intended to release in time for Christmas, we missed the mark a bit but hope you'll enjoy it all the same. We've also pushed some extra goodies to existing expansions.
+
+<h2>Heavy Duty <i>(New!)</i></h2>
+<p><input type='submit' value='Open Workshop' onclick='console.log("RUNLUA:gui.OpenURL(\"https://steamcommunity.com/sharedfiles/filedetails/?id=3134547969\")")' /></p>
+The heavy weaponry expansion, sporting 10 new weapons including autoshotties, guided rockets and an 80's cinema icon.
+<ul>
+<li>AMT Hardballer
+<li>Dual Hardballers
+<li>CheyTac M200 Intervention
+<li>Franchi SPAS-12
+<li>HK XM25 CDTE
+<li>Holland & Holland Double Rifle
+<li>Mk 153 SMAW
+<li>Pancor Jackhammer
+<li>SSK Industries .950 JDJ "Fat Mac"
+<li>Taurus Raging Judge
+</ul>
+
+<h2>InterOps</h2>
+<p><input type='submit' value='Open Workshop' onclick='console.log("RUNLUA:gui.OpenURL(\"https://steamcommunity.com/sharedfiles/filedetails/?id=2975992869\")")' /></p>
+<ul>
+<li><b>New weapon:</b> SIG SG 550-2 SP. A semi auto-only, non-sniper SIG in the Sporter Carbines category.
+</ul>
+
+<h2>ArmaLite Revolution</h2>
+<input type='submit' value='Open Workshop' onclick='console.log("RUNLUA:gui.OpenURL(\"https://steamcommunity.com/sharedfiles/filedetails/?id=3006376475\")")' />
+<ul>
+<li><b>New weapon:</b> KAC SR-25 EMR. A high-power, low-capacity AR-based marksman rifle.
+</ul>
+
+<hr>
+
+<h3>Changelist</h3>
+<ul>
+<li><b>Changed:</b> (InterOps) Updated XM8 LMG model. Added bipod and now has correct barrel length.
+<li><b>Changed:</b> (InterOps) SG 550-1 burst mode changed to automatic, redone stats.
+<li><b>Changed:</b> (Brute Force) Replaced crowbar and pipe wrench models with new ones from CSO2.
+<li><b>Changed:</b> (Iron Curtain) SVD stat tweaks.
+</ul>
+
+<hr>
+
+<p>Have a tactical 2024, gamers!]],
+    },
+        {
+        Title = "Update 19",
+        Type = "Patch Notes",
+        Date = "2024-04-01",
+        Author = "speedonerd",
+        Major = false,
+        Summary = "Not (quite) an April Fools update.",
+        Contents = [[<body style="font-family:'Myriad Pro';color:white;font-size:125%;">
+<p>Hey all! It's been a while since our last Workshop release and things over on the dev front have started to slow, owing to some real-life obligations from both me and 8Z. That's not to say we don't have anything new to share, as we've cooked up a few things in the past 2 months that we'll be dropping with this update.
+
+<h2>What is this, "balance," you speak of?</h2>
+<p>TacRP's various gameplay and balance settings have been, frankly, a total mess for a while. As we continued adding new tweakable options the menus started getting very cluttered, and as we continued adding new weapons we found that having to create 4 whole sets of stats for every single one became insanely arduous.
+<p>A balance revamp was well overdue so we've gone and done just that. Instead of the Arcade-Tactical-TTT-PvE modes we had before that mainly changed TTK speeds and speed penalties, we've reduced this to three new balance modes: Tiered, Untiered and TTT.
+<p>The main difference now is the utilization of the weapon tier system, with Tiered separating weapons into four tiers with higher tiers having better stats, and Untiered eliminating these tiers and making all weapons similar in stats. TTT mode still exists to cater to the specific gameplay flow of the mode.
+<p>Instead of balance schemes controlling speed and handling penalties, things like melee and sighted slowdowns are togglable options independent of the balancing scheme, and damage can now be fine tuned per weapontype to increase or decrease TTK. Sliders for various other things like ADS speed, reload speed and recoil kick have also been added.
+<p>These sliders and certain options that directly affect balance are under the Balance tab while mechanics that exist independent of balance scheme are under the Mechanics tab.
+
+<h2>Dwarves don't use ironsights.</h2>
+<p>Old School mode has been reworked into Old School Scopes; a balance mechanic independent of any one scheme. Like before, it disables ironsights and tightens hipfire, but spread will now be increased with an optic fitted. The higher an optic's magnification, the higher your spread penalty. 
+
+<h2>More options, more fun!</h2>
+<p>Some new minor gameplay options have been added for extra spice. 
+<p>'Dump ammo in magazines' does exactly what it says on the tin: any ammo left in your magazine when you reload will be dropped onto the ground. It is not lost, however, as dropped magazines can be picked up by the player to recover the lost ammo. (This mechanic was not inspired by any particular <i>democratic game</i> and was entirely of our own invention)
+<p>'Lower weapon while not aiming' forces weapons to always be lowered unless you're aiming them, similar to DarkRP.
+
+<h2>Animator? I barely know her!</h2>
+<p>Normally I wouldn't write something for an animation overhaul but this one is a special case. The K98 Sporter from InterOps has always been controversial as it's an iconic old-world bolt action that's been bastardized to use a box mag. The real reason for this was TacInt had no suitable animation set for a weapon like a Mauser rifle and we had to settle for what we had.
+<p>That was until recently when a friend of ours approached us with new animations for the rifle; the Hunting Rifle animations from Cry of Fear. As such, the K98 has been revamped with these new animations and no longer has that fugly Sako mag protruding out from it. Thanks Lazarus!
+<p>Oh yeah, the Double Defense from Special Delivery received new animations too, so that's neat.
+
+<hr>
+
+<h3>Changelog</h3>
+<ul>
+<li><b>Added:</b> (Base) HK45 Compact in Elite tier.
+<li><b>Added:</b> (Base) New balance scheme overhaul.
+<li><b>Changed:</b> (Base) RPG-7 projectiles have slightly shorter safety fuse.
+<li><b>Changed:</b> (InterOps) New Kar 98k animations from Cry of Fear. (Thanks Lazarus!)
+<li><b>Changed:</b> (InterOps) Rescaled FNC model.
+<li><b>Changed:</b> (InterOps) Revised Honey Badger model and sounds.
+<li><b>Changed:</b> (InterOps) New STAR-15 sounds. (Thanks rzenith!)
+<li><b>Changed:</b> (Special Delivery) New Double Defense animations.
+<li><b>Changed:</b> (Brute Force) New baseball bat animations. (Thanks Lazarus!)
+<li><b>Fixed:</b> (Heavy Metal) Fixed laser beam origin on Hardballer.
+<li><b>Fixed:</b> Some other stuff probably not worth documenting.
+]],
+    },
+	{
+        Title = "Pistol Whips Release",
+        Type = "Expansion Release",
+        Date = "2024-04-16",
+        Author = "speedonerd",
+        Major = true,
+        Summary = "Sensational sidearms abound!",
+        Contents = [[<body style="font-family:'Myriad Pro';color:white;font-size:125%;">
+<p>A spur-of-the-moment idea completed in a few days to bolster the (already quite sizable) pool of sidearms in TacRP. 
+
+<h2>Pistol Whips <i>(New!)</i></h2>
+<p><input type='submit' value='Open Workshop' onclick='console.log("RUNLUA:gui.OpenURL(\"https://steamcommunity.com/sharedfiles/filedetails/?id=3134547969\")")' /></p>
+<p>Five brand new pistols, coming from cinema, anime and stuff that caught my eye.
+<ul>
+<li>H&K P7
+<li>Jericho 941
+<li>Walther P99
+<li>SIG P210
+<li>Beretta 93R
+</ul>
+
+<hr>
+
+<h3>Changelog</h3>
+<ul>
+<li><b>Changed:</b> (All packs) Updated a few descriptions and added/changed some quotes.
+<li><b>Changed:</b> (InterOps) Small balance tweaks to the P226.
+</ul>
+
+<p>Hopefully this small expansion can satisfy while we continue to cook up more substantial updates and content releases. Thanks again for your ongoing support!
+]],
     },
 }
 TacRP.NewsRead = TacRP.NewsRead or {}
@@ -674,7 +827,7 @@ local function loadlocalandsort()
     end)
 end
 
-local function fetchnews(callback)
+function TacRP.FetchNews(callback)
     if TacRP.NewsLoaded then
         if callback then
             callback()
@@ -723,7 +876,7 @@ local function fetchnews(callback)
         end
     end)
 end
-
+local fetchnews = TacRP.FetchNews
 
 local html_head = [[<head>
 <style>
@@ -1176,11 +1329,11 @@ local function notifynews()
         if ind then
             if major and !TacRP.ConVars["news_majoronly"]:GetBool() then
                 TacRP.CreateNewsPanel(ind)
-            elseif major or !TacRP.ConVars["news_majoronly"]:GetBool() then
-                chat.AddText(color_white, "------------- Tactical RP -------------")
-                chat.AddText(color_white, "New " .. string.lower(TacRP.NewsLoaded[ind].Type or "article") .. " released!")
-                chat.AddText(color_white, "Use command 'tacrp_news' or type '/tacrp_news' to view it and suppress this message.")
-                chat.AddText(color_white, "---------------------------------------")
+            -- elseif major or !TacRP.ConVars["news_majoronly"]:GetBool() then
+            --     chat.AddText(color_white, "------------- Tactical RP -------------")
+            --     chat.AddText(color_white, "New " .. string.lower(TacRP.NewsLoaded[ind].Type or "article") .. " released!")
+            --     chat.AddText(color_white, "Use command 'tacrp_news' or type '/tacrp_news' to view it and suppress this message.")
+            --     chat.AddText(color_white, "---------------------------------------")
             end
         end
     end)

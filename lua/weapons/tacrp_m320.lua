@@ -5,6 +5,7 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "HK M320"
+SWEP.AbbrevName = "M320"
 SWEP.Category = "Tactical RP (Special)"
 
 SWEP.SubCatTier = "9Special"
@@ -28,32 +29,20 @@ SWEP.Slot = 4
 
 SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.6,
-        SightedSpeedMult = 0.9,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 0.85,
     },
     [TacRP.BALANCE_TTT] = {
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.6,
-        SightedSpeedMult = 0.5,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 0.75,
     },
 }
 
 // "ballistics"
 
-SWEP.Damage_Max = 200 // just to fool the ratings
+SWEP.Damage_Max = 150
 SWEP.Damage_Min = 150
 SWEP.Range_Max = 4000
 SWEP.Range_Min = 1000
 
 SWEP.ShootEnt = "tacrp_proj_40mm_he"
-SWEP.ShootEntForce = 7000
+SWEP.ShootEntForce = 4000
 
 SWEP.BodyDamageMultipliers = {
     [HITGROUP_HEAD] = 1,

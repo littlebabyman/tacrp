@@ -5,12 +5,14 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "HK HK94"
+SWEP.AbbrevName = "HK94"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "4Consumer"
-SWEP.SubCatType = "5Sporter Carbine"
+SWEP.SubCatType = "5Sporter"
 
 SWEP.Description = "Semi-automatic model of a legendary submachine gun.\nUses reduced capacity magazines."
+SWEP.Description_Quote = ""
 
 SWEP.Trivia_Caliber = "9x19mm"
 SWEP.Trivia_Manufacturer = "Heckler & Koch"
@@ -20,7 +22,7 @@ SWEP.Faction = TacRP.FACTION_NEUTRAL
 SWEP.Credits = "Assets: Tactical Intervention \nModel Edit: speedonerd (it was sooooo hard lol)"
 
 SWEP.ViewModel = "models/weapons/tacint/v_hk94.mdl"
-SWEP.WorldModel = "models/weapons/tacint/w_mp5.mdl"
+SWEP.WorldModel = "models/weapons/tacint/w_hk94.mdl"
 
 SWEP.Slot = 2
 
@@ -28,18 +30,10 @@ SWEP.Slot = 2
 SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
         Description = "Semi-automatic model of a legendary submachine gun. Fine tuned for precision shooting.",
-
         Damage_Max = 22,
         Damage_Min = 15,
-
         RecoilKick = 2,
         Spread = 0.001,
-
-        MoveSpeedMult = 0.9,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.85,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Description = "Semi-automatic model of a legendary submachine gun. Fine tuned for precision shooting.",
@@ -64,14 +58,6 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1,
-
-        MoveSpeedMult = 0.95,
-        ShootingSpeedMult = 0.85,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.6,
-        ReloadSpeedMult = 0.7,
     },
     [TacRP.BALANCE_PVE] = {
         Description = "Semi-automatic carbine variant of a legendary submachine gun. Fine tuned for precision shooting.",
@@ -88,12 +74,6 @@ SWEP.BalanceStats = {
         RecoilDissipationRate = 6,
         RecoilSpreadPenalty = 0.002,
         HipFireSpreadPenalty = 0.02,
-
-        MoveSpeedMult = 0.9,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.85,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilDissipationRate = 20,
@@ -111,11 +91,12 @@ SWEP.TTTReplace = {}
 SWEP.Firemode = 1
 SWEP.Firemodes = false
 
-SWEP.RPM = 650
+SWEP.RPM = 600
+SWEP.RPMMultSemi = 0.7
 
 SWEP.RecoilKick = 1.5
 
-SWEP.ClipSize = 20
+SWEP.ClipSize = 15
 
 SWEP.FreeAimMaxAngle = 3.75
 
@@ -139,7 +120,7 @@ SWEP.Attachments = {
         AttachSound = "TacRP/weapons/silencer_on.wav",
         DetachSound = "TacRP/weapons/silencer_off.wav",
         Pos_VM = Vector(-4.32, -0.3, 28),
-        Pos_WM = Vector(24, 2.5, -5.25),
+        Pos_WM = Vector(31, 2.5, -5.25),
         Ang_VM = Angle(90, 0, 0),
         Ang_WM = Angle(0, -3.5, 180),
     },

@@ -5,6 +5,7 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "Daewoo K1A"
+SWEP.AbbrevName = "K1A"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "4Consumer"
@@ -12,7 +13,7 @@ SWEP.SubCatType = "4Assault Rifle"
 
 SWEP.Description = "Burst rifle with minimal recoil and good hip firing accuracy."
 
-SWEP.Trivia_Caliber = ".223 Remington" // Pre-2014 K1A's were chambered for .223, TacInt originally released in 2013. Cool trivia fact!
+SWEP.Trivia_Caliber = "5.56x45mm"
 SWEP.Trivia_Manufacturer = "Daewoo Precision"
 SWEP.Trivia_Year = "1981"
 
@@ -30,12 +31,6 @@ SWEP.BalanceStats = {
         Damage_Min = 10,
 
         RecoilKick = 1.5,
-
-        MoveSpeedMult = 0.85,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.8,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 15,
@@ -56,24 +51,10 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 0.9,
-        ShootingSpeedMult = 0.8,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.55,
-        ReloadSpeedMult = 0.65,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 9,
         Damage_Min = 4,
-
-        MoveSpeedMult = 0.85,
-        ShootingSpeedMult = 0.8,
-        SightedSpeedMult = 0.8,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         HipFireSpreadPenalty = 0.009,
@@ -111,8 +92,8 @@ SWEP.Firemodes = {-3, 1}
 SWEP.RunawayBurst = true
 SWEP.PostBurstDelay = 0.16
 
-SWEP.RPM = 650
-SWEP.RPMMultBurst = 800 / 650
+SWEP.RPM = 675
+SWEP.RPMMultBurst = 800 / 675
 
 SWEP.Spread = 0.004
 SWEP.RecoilSpreadPenalty = 0.002

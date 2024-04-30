@@ -5,6 +5,7 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "Manurhin MR96"
+SWEP.AbbrevName = "MR96"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "2Operator"
@@ -26,24 +27,19 @@ SWEP.Slot = 1
 
 SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 0.75,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
         Damage_Max = 35,
-        Damage_Min = 15,
+        Damage_Min = 20,
 
-        Range_Min = 300,
-        Range_Max = 3000,
+        Range_Min = 600,
+        Range_Max = 1600,
 
         RPM = 120,
 
         BodyDamageMultipliers = {
-            [HITGROUP_HEAD] = 3,
-            [HITGROUP_CHEST] = 1,
+            [HITGROUP_HEAD] = 4,
+            [HITGROUP_CHEST] = 1.25,
             [HITGROUP_STOMACH] = 1,
             [HITGROUP_LEFTARM] = 1,
             [HITGROUP_RIGHTARM] = 1,
@@ -54,25 +50,11 @@ SWEP.BalanceStats = {
 
         RecoilMaximum = 2,
         RecoilDissipationRate = 2.5,
-
-        ReloadTimeMult = 1.25,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 0.75,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.75,
-        ReloadSpeedMult = 0.8,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 55,
         Damage_Min = 24,
         RPM = 120,
-
-        MoveSpeedMult = 1,
-        ShootingSpeedMult = 0.75,
-        SightedSpeedMult = 1,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilDissipationRate = 4
@@ -93,7 +75,7 @@ SWEP.ArmorPenetration = 0.9
 SWEP.MuzzleVelocity = 12500
 
 SWEP.BodyDamageMultipliers = {
-    [HITGROUP_HEAD] = 2.5,
+    [HITGROUP_HEAD] = 3,
     [HITGROUP_CHEST] = 1,
     [HITGROUP_STOMACH] = 1.25,
     [HITGROUP_LEFTARM] = 0.9,
@@ -109,7 +91,7 @@ SWEP.Firemode = 1
 
 SWEP.FiremodeName = "Double-Action" // only used externally for firemode name distinction
 
-SWEP.RPM = 150
+SWEP.RPM = 140
 
 SWEP.Spread = 0.001
 
@@ -166,6 +148,8 @@ SWEP.SprintPos = Vector(2, 0, -12)
 
 SWEP.SightAng = Angle(-0.15, 1, 0)
 SWEP.SightPos = Vector(-3.5, 0, -3.7)
+
+SWEP.CorrectivePos = Vector(0, 0, 0.1)
 
 SWEP.HolsterVisible = true
 SWEP.HolsterSlot = TacRP.HOLSTER_SLOT_PISTOL
@@ -262,7 +246,7 @@ SWEP.Attachments = {
         WMBone = "Box01",
         AttachSound = "TacRP/weapons/optic_on.wav",
         DetachSound = "TacRP/weapons/optic_off.wav",
-        VMScale = 1,
+        VMScale = 0.8,
         WMScale = 1,
         Pos_VM = Vector(-3.9, -0.125, 6.5),
         Ang_VM = Angle(90, 0, 0),

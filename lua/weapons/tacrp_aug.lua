@@ -5,12 +5,14 @@ AddCSLuaFile()
 
 // names and stuff
 SWEP.PrintName = "Steyr AUG"
+SWEP.AbbrevName = "AUG"
 SWEP.Category = "Tactical RP"
 
 SWEP.SubCatTier = "2Operator"
 SWEP.SubCatType = "4Assault Rifle"
 
 SWEP.Description = "Burst bullpup rifle with a generous magazine capacity and great handling."
+SWEP.Description_Quote = "\"I want blood!\" \"And you'll have it.\""
 
 SWEP.Trivia_Caliber = "5.56x45mm"
 SWEP.Trivia_Manufacturer = "Steyr Arms"
@@ -28,16 +30,10 @@ SWEP.BalanceStats = {
     [TacRP.BALANCE_SBOX] = {
         Damage_Max = 20,
         Damage_Min = 12,
-
-        MoveSpeedMult = 0.85,
-        ShootingSpeedMult = 0.75,
-        SightedSpeedMult = 0.85,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_TTT] = {
-        Damage_Max = 13,
-        Damage_Min = 9,
+        Damage_Max = 14,
+        Damage_Min = 10,
         Range_Min = 400,
         Range_Max = 1800,
         PostBurstDelay = 0.2,
@@ -57,24 +53,10 @@ SWEP.BalanceStats = {
             [HITGROUP_RIGHTLEG] = 0.75,
             [HITGROUP_GEAR] = 0.9
         },
-
-        ReloadTimeMult = 1.3,
-
-        MoveSpeedMult = 0.9,
-        ShootingSpeedMult = 0.8,
-        MeleeSpeedMult = 1,
-        SightedSpeedMult = 0.65,
-        ReloadSpeedMult = 0.65,
     },
     [TacRP.BALANCE_PVE] = {
         Damage_Max = 11,
         Damage_Min = 7,
-
-        MoveSpeedMult = 0.85,
-        ShootingSpeedMult = 0.75,
-        SightedSpeedMult = 0.85,
-        MeleeSpeedMult = 1,
-        ReloadSpeedMult = 1,
     },
     [TacRP.BALANCE_OLDSCHOOL] = {
         RecoilDissipationRate = 15,
@@ -244,9 +226,6 @@ SWEP.AttachmentElements = {
         BGs_VM = {
             {1, 1}
         },
-        BGs_WM = {
-            {1, 1}
-        }
     },
 }
 

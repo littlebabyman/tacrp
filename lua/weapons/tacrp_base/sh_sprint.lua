@@ -9,16 +9,25 @@ function SWEP:GetIsSprinting()
         return true
     end
 
+    if self:DoForceSightsBehavior() and self:GetScopeLevel() == 0 and !self:GetInBipod() and self:GetBlindFireMode() == TacRP.BLINDFIRE_NONE then
+        return true
+    end
+
+    if self:CanShootInSprint() then return false end
+
     local walkspeed = owner:GetWalkSpeed()
     local runspeed = owner:GetRunSpeed()
-    local curspeed = owner:GetVelocity():Length()
 
     if owner.TacRP_SprintBlock then return false end
     if owner:GetNWBool("TacRPChargeState", false) then return true end
     if owner:GetNWBool("SlidingAbilityIsSliding", false) then return false end
 
-    if TTT2 and owner.isSprinting == true then
-        return (owner.sprintProgress or 0) > 0 and owner:KeyDown(IN_SPEED) and !owner:Crouching() and curspeed > walkspeed and owner:OnGround()
+    if TTT2 then
+        if SPRINT and SPRINT:IsSprinting(owner) then
+            return true
+        else
+            return owner.isSprinting == true and (owner.sprintProgress or 0) > 0 and owner:KeyDown(IN_SPEED) and !owner:Crouching() and owner:OnGround()
+        end
     end
 
     -- TTT sets runspeed to curspeed, so this will disable it unless sprint addons exist (who ideally sets runspeed. i didn't check)
@@ -26,7 +35,7 @@ function SWEP:GetIsSprinting()
 
     if !owner.TacRP_Moving then return false end -- Don't check IN_ move keys because 1) controllers and 2) bots
     if !owner:KeyDown(IN_SPEED) then return false end -- SetButtons does not seem to affect this?
-    if curspeed <= 0 then return false end
+    -- if curspeed <= 0 then return false end -- Unfortunately this is not predictible
     if !owner:OnGround() then return false end
 
     if self:GetOwner():GetInfoNum("tacrp_aim_cancels_sprint", 0) > 0 and self:GetScopeLevel() > 0 then return false end
@@ -94,7 +103,7 @@ function SWEP:ThinkSprint()
 
     self.LastWasSprinting = sprinting
 
-    if sprinting then
+    if sprinting and !self:GetInBipod() then
         amt = math.Approach(amt, 1, FrameTime() / self:GetValue("SprintToFireTime"))
     else
         amt = math.Approach(amt, 0, FrameTime() / self:GetValue("SprintToFireTime"))
@@ -114,4 +123,8 @@ end
 
 function SWEP:CanReloadInSprint(base)
     return TacRP.ConVars["sprint_reload"]:GetBool()
+end
+
+function SWEP:DoForceSightsBehavior()
+    return TacRP.ConVars["sightsonly"]:GetBool() and self:GetValue("Scope")
 end

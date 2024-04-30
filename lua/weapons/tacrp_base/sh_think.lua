@@ -1,31 +1,8 @@
 function SWEP:Think()
     local owner = self:GetOwner()
 
-    if CLIENT and !self.CertainAboutAtts and !self.AskedAboutAtts then
-        self.AskedAboutAtts = true
-        self:RequestWeapon()
-    end
-
     local stop = self:RunHook("Hook_PreThink")
     if stop then return end
-
-    -- if owner:KeyReleased(IN_ATTACK) then
-    --     if !self:GetValue("RunawayBurst") then
-    --         self:SetBurstCount(0)
-    --     end
-    --     if self:GetCurrentFiremode() < 0 and !self:GetValue("RunawayBurst") and self:GetBurstCount() > 0 then
-    --         self:SetNextPrimaryFire(CurTime() + self:GetValue("PostBurstDelay"))
-    --     end
-    -- end
-
-    -- if self:GetValue("RunawayBurst") then
-    --     if self:GetBurstCount() > -self:GetCurrentFiremode() then
-    --         self:SetBurstCount(0)
-    --         self:SetNextPrimaryFire(CurTime() + self:GetValue("PostBurstDelay"))
-    --     elseif self:GetBurstCount() > 0 then
-    --         self:PrimaryAttack()
-    --     end
-    -- end
 
     local cfm = self:GetCurrentFiremode()
     if self:GetValue("RunawayBurst") and cfm < 0 then
@@ -97,7 +74,7 @@ function SWEP:Think()
         self:SetJammed(false)
     end
 
-    if self:GetNextIdle() < CurTime() then
+    if self:GetNextIdle() < CurTime() and (SERVER or !game.SinglePlayer()) then
         self:Idle()
     end
 
@@ -105,7 +82,7 @@ function SWEP:Think()
         self:ExitBipod()
     end
 
-    if CLIENT then
+    if CLIENT and (IsFirstTimePredicted() or game.SinglePlayer()) then
 
         self:ThinkNearWall()
 
@@ -120,7 +97,7 @@ function SWEP:Think()
             end
         end
 
-        if !self.LoadedPreset and self.CertainAboutAtts then
+        if !self.LoadedPreset then
             self.LoadedPreset = true
 
             if TacRP.ConVars["autosave"]:GetBool() and TacRP.ConVars["free_atts"]:GetBool() then
