@@ -44,6 +44,7 @@ SWEP.MeleeSpeedMultTime = 2 // seconds to apply slow down for
 SWEP.SprintToFireTime = 0.25
 
 SWEP.Scope = false
+SWEP.NoSecondaryMelee = true
 
 // hold types
 
@@ -202,7 +203,7 @@ end
 function SWEP:Regenerate()
     if CLIENT then return end
     if self:GetNextPrimaryFire() + 0.1 > CurTime() then return end
-    if !engine.ActiveGamemode() == "terrortown" or !IsValid(self:GetOwner()) or self:GetOwner():GetActiveWeapon() != self then return end
+    if engine.ActiveGamemode() == "terrortown" and (!IsValid(self:GetOwner()) or self:GetOwner():GetActiveWeapon() != self) then return end
     self:SetClip1(math.min(self:Clip1() + 1, 30))
 end
 
